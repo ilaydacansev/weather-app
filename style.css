@@ -24,24 +24,24 @@ body {
 }
 
 .header {
-  padding: 50px 28px 30px 28px;
+  padding: 37px 50px 30px 50px;
+  display: flex;
+  width: 100%;
 }
 
 /* .weather {
-  position: absolute;
-  top: 0;
-  left: 0;
-  padding: 20px;
-}
-
-.weather h1 {
-  font-size: 32px;
-  color: #a27a38;
-  font-weight: 600;
+  padding-left: 18%;
 } */
 
+.weather {
+  font-size: 40px;
+  color: #7b4c52;
+  font-weight: 600;
+  padding-left: 18%;
+}
+
 .header input {
-  width: 100%;
+  width: 45%;
   padding: 10px;
   background: transparent;
   border: 0;
@@ -50,38 +50,42 @@ body {
   border: 1px solid #587377;
   border-radius: 20px;
   text-align: center;
-  font-size: 20px;
+  font-size: 18px;
+  height: 40px;
 }
 
 .city {
-  display: flex;
-  flex-direction: column;
-  font-size: 35px;
-  font-weight: 500;
-  margin-bottom: 10px;
-  text-shadow: 1px 3px rgba(0, 0, 0, 0.8);
+  width: 26%;
+  font-size: 17px;
+  font-weight: 400;
+  margin-top: 6px;
+  /* text-shadow: 1px 3px rgba(0, 0, 0, 0.8); */
   color: #fff;
+}
+
+.city i {
+  padding-right: 6px;
 }
 
 .temp {
   font-size: 70px;
   font-weight: 700;
   margin-bottom: 15px;
-  text-shadow: 1px 5px rgba(0, 0, 0, 1);
+  /* text-shadow: 1px 5px rgba(0, 0, 0, 1); */
   color: #fff;
 }
 
 .desc {
   font-size: 70px;
   font-style: italic;
-  text-shadow: 1px 5px rgba(0, 0, 0, 0.8);
+  /* text-shadow: 1px 5px rgba(0, 0, 0, 0.8); */
   margin-bottom: 10px;
   color: #fff;
 }
 
 .minmax {
   font-size: 24px;
-  text-shadow: 1px 5px rgba(0, 0, 0, 0.8);
+  /* text-shadow: 1px 5px rgba(0, 0, 0, 0.8); */
   color: #fff;
 }
 
