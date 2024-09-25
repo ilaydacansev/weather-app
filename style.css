@@ -46,11 +46,11 @@ body {
 .cloud {
   position: absolute;
   left: 0;
-  transform: translate(100%, 100%);
+  transform: translate(75%, 80%);
 }
 
 .cloudy {
-  width: 100px;
+  width: 130px;
   /* position: relative;
   right: 40%;
   bottom: 30%; */
@@ -88,12 +88,29 @@ body {
   color: #fff;
 }
 
+.information {
+  display: flex;
+  flex-direction: column;
+}
+
 .day {
-  font-size: 30px;
-  font-weight: 700;
+  font-size: 20px;
+  font-weight: 300;
   margin-bottom: 15px;
-  /* text-shadow: 1px 5px rgba(0, 0, 0, 1); */
   color: #fff;
+  transform: translate(117%, 214%);
+  position: absolute;
+  left: 0;
+}
+
+.feel {
+  font-size: 20px;
+  font-weight: 300;
+  margin-bottom: 15px;
+  color: #fff;
+  transform: translate(204%, 135%);
+  position: absolute;
+  left: 0;
 }
 
 .city i {
@@ -101,25 +118,36 @@ body {
 }
 
 .temp {
-  font-size: 70px;
+  font-size: 50px;
   font-weight: 700;
   margin-bottom: 15px;
   /* text-shadow: 1px 5px rgba(0, 0, 0, 1); */
   color: #fff;
+  margin-bottom: 15px;
+  color: #fff;
+  transform: translate(212%, 115%);
+  position: absolute;
+  left: 0;
 }
 
 .desc {
-  font-size: 70px;
+  font-size: 20px;
   font-style: italic;
   /* text-shadow: 1px 5px rgba(0, 0, 0, 0.8); */
   margin-bottom: 10px;
   color: #fff;
+  transform: translate(82%, 551%);
+  position: absolute;
+  left: 0;
 }
 
 .minmax {
-  font-size: 24px;
+  font-size: 20px;
   /* text-shadow: 1px 5px rgba(0, 0, 0, 0.8); */
   color: #fff;
+  transform: translate(109%, 666%);
+  position: absolute;
+  left: 0;
 }
 
 /* img {
