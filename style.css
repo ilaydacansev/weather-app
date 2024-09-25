@@ -34,10 +34,26 @@ body {
 } */
 
 .weather {
-  font-size: 40px;
   color: #7b4c52;
   font-weight: 600;
-  padding-left: 18%;
+  position: absolute;
+  right: 0;
+  padding-right: 2%;
+  padding-top: 2.7%;
+  width: 215px;
+}
+
+.cloud {
+  position: absolute;
+  left: 0;
+  transform: translate(100%, 100%);
+}
+
+.cloudy {
+  width: 100px;
+  /* position: relative;
+  right: 40%;
+  bottom: 30%; */
 }
 
 .header input {
@@ -54,12 +70,29 @@ body {
   height: 40px;
 }
 
+.header input:hover {
+  border-color: #9bb6d3;
+}
+
+.header input:focus {
+  border-color: #9bb6d3;
+  outline: none;
+}
+
 .city {
   width: 26%;
   font-size: 17px;
   font-weight: 400;
   margin-top: 6px;
   /* text-shadow: 1px 3px rgba(0, 0, 0, 0.8); */
+  color: #fff;
+}
+
+.day {
+  font-size: 30px;
+  font-weight: 700;
+  margin-bottom: 15px;
+  /* text-shadow: 1px 5px rgba(0, 0, 0, 1); */
   color: #fff;
 }
 
