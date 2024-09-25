@@ -46,7 +46,15 @@ body {
 .cloud {
   position: absolute;
   left: 0;
-  transform: translate(75%, 80%);
+  transform: translate(75%, 279%);
+}
+
+.cloud h1 {
+  font-size: 17px;
+  color: #fff;
+  width: 31px;
+  float: right;
+  transform: translate(-115%, -17%);
 }
 
 .cloudy {
@@ -84,33 +92,41 @@ body {
   font-size: 17px;
   font-weight: 400;
   margin-top: 6px;
-  /* text-shadow: 1px 3px rgba(0, 0, 0, 0.8); */
   color: #fff;
 }
 
 .information {
+  transform: translate(0, 174%);
+  position: absolute;
+  left: 23%;
+}
+
+.more-info {
   display: flex;
   flex-direction: column;
+  transform: translate(95%, 279%);
+  position: absolute;
+  left: 0;
 }
 
 .day {
   font-size: 20px;
   font-weight: 300;
-  margin-bottom: 15px;
+  margin-bottom: 9px;
   color: #fff;
-  transform: translate(117%, 214%);
+  /* transform: translate(117%, 214%);
   position: absolute;
-  left: 0;
+  left: 0; */
 }
 
 .feel {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 300;
-  margin-bottom: 15px;
+  /* margin-bottom: 15px; */
   color: #fff;
-  transform: translate(204%, 135%);
+  /* transform: translate(204%, 135%);
   position: absolute;
-  left: 0;
+  left: 0; */
 }
 
 .city i {
@@ -118,36 +134,38 @@ body {
 }
 
 .temp {
-  font-size: 50px;
+  font-size: 37px;
   font-weight: 700;
-  margin-bottom: 15px;
+  margin-bottom: 9px;
   /* text-shadow: 1px 5px rgba(0, 0, 0, 1); */
   color: #fff;
-  margin-bottom: 15px;
+  /* margin-bottom: 15px; */
   color: #fff;
-  transform: translate(212%, 115%);
+  /* transform: translate(212%, 115%);
   position: absolute;
-  left: 0;
+  left: 0; */
 }
 
 .desc {
   font-size: 20px;
   font-style: italic;
   /* text-shadow: 1px 5px rgba(0, 0, 0, 0.8); */
-  margin-bottom: 10px;
+  /* margin-bottom: 10px; */
   color: #fff;
-  transform: translate(82%, 551%);
+  /* transform: translate(82%, 551%);
   position: absolute;
-  left: 0;
+  left: 0; */
 }
 
 .minmax {
+  display: flex;
+  flex-direction: column;
   font-size: 20px;
   /* text-shadow: 1px 5px rgba(0, 0, 0, 0.8); */
   color: #fff;
-  transform: translate(109%, 666%);
+  /* transform: translate(109%, 666%);
   position: absolute;
-  left: 0;
+  left: 0; */
 }
 
 /* img {
