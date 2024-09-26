@@ -60,7 +60,7 @@ body {
   transform: translate(75%, 279%);
 } */
 
-.cloud h1 {
+.cloud h2 {
   font-size: 17px;
   color: #fff;
   width: 31px;
@@ -165,7 +165,7 @@ body {
 .dropdown-content {
   display: none;
   position: absolute;
-  background-color: transparent;
+  background-color: #587377;
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
@@ -183,7 +183,11 @@ body {
 }
 
 .dropdown-content a:hover {
-  background-color: #f1f1f1;
+  background-color: #6ea6af;
+}
+
+.show {
+  display: block;
 }
 
 .more-info {
