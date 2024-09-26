@@ -23,8 +23,14 @@ body {
   height: 100vh;
 }
 
+.container {
+  max-width: 1320px;
+  padding: 0;
+  margin: 0;
+}
+
 .header {
-  padding: 37px 50px 30px 50px;
+  padding: 27px 11px 26px 11px;
   display: flex;
   width: 100%;
 }
@@ -33,28 +39,33 @@ body {
   padding-left: 18%;
 } */
 
-.weather {
-  color: #7b4c52;
-  font-weight: 600;
-  position: absolute;
-  right: 0;
-  padding-right: 2%;
-  padding-top: 2.7%;
-  width: 215px;
+.title {
+  width: 19%;
+  transform: translate(100%, 0%);
+  margin-left: 4%;
 }
 
-.cloud {
+.main-title {
+  font-size: 31px;
+  color: #8a7f7f;
+  font-weight: 600;
+  /* position: absolute;
+  right: 0;
+  padding-right: 2%; */
+}
+
+/* .cloud {
   position: absolute;
   left: 0;
   transform: translate(75%, 279%);
-}
+} */
 
 .cloud h1 {
   font-size: 17px;
   color: #fff;
   width: 31px;
-  float: right;
-  transform: translate(-115%, -17%);
+  /* float: right; */
+  /* transform: translate(-115%, -17%); */
 }
 
 .cloudy {
@@ -65,7 +76,7 @@ body {
 }
 
 .header input {
-  width: 45%;
+  width: 32%;
   padding: 10px;
   background: transparent;
   border: 0;
@@ -88,25 +99,36 @@ body {
 }
 
 .city {
-  width: 26%;
-  font-size: 17px;
+  width: auto;
+  font-size: 19px;
   font-weight: 400;
-  margin-top: 6px;
+  margin-top: 12px;
+  padding-right: 2.3%;
+  padding-left: 4%;
   color: #fff;
 }
 
-.information {
+.city span {
+  color: #a59a9a;
+}
+
+.city i {
+  color: #a59a9a;
+  padding-right: 6px;
+}
+
+/* .information {
   transform: translate(0, 174%);
   position: absolute;
   left: 23%;
-}
+} */
 
 .more-info {
   display: flex;
   flex-direction: column;
-  transform: translate(95%, 279%);
+  /* transform: translate(95%, 279%);
   position: absolute;
-  left: 0;
+  left: 0; */
 }
 
 .day {
@@ -127,10 +149,6 @@ body {
   /* transform: translate(204%, 135%);
   position: absolute;
   left: 0; */
-}
-
-.city i {
-  padding-right: 6px;
 }
 
 .temp {
