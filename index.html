@@ -20,17 +20,42 @@
         href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
         rel="stylesheet">
 
+
     <script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
 </head>
 
 <body>
     <div class="app">
         <div class="header my-3">
+
+            <!-- <ul>
+                <a href="javascript:void(0)" class="dropbtn"><i class="fa-solid fa-bars"></i></a>
+                <li class="dropdown">
+                    <div class="dropdown-content">
+                        <a href="#">10 Günlük Hava Durumu</a>
+                        <a href="#">Gizlilik</a>
+                        <a href="#">Çerez Ayarları</a>
+                    </div>
+                </li>
+            </ul> -->
+
+            <div class="dropdown">
+                <button class="dropbtn"><i class="fa-solid fa-bars"></i></button>
+                <div class="dropdown-content">
+                    <a href="#">Seçenek 1</a>
+                    <a href="#">Seçenek 2</a>
+                    <a href="#">Seçenek 3</a>
+                </div>
+            </div>
+
             <div class="city">
                 <i class="fa-solid fa-location-dot"></i>
                 <span><strong>Istanbul'da</strong> Hava Durumu</span>
             </div>
-            <input type="text" id="searchBar" class="mt-2" placeholder="Bir konum için arama yapın..">
+            <div class="search-container">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="searchBar" class="mt-2" placeholder="Bir konum için arama yapın..">
+            </div>
             <div class="title">
                 <span class="main-title">HAVA DURUMU</span>
             </div>
