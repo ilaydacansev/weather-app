@@ -7,7 +7,7 @@
 body {
   font-family: "montserrat", sans-serif;
   color: #fff;
-  background-image: url(weather\ photo.jpg);
+  background-image: url(paul-earle-xJ2tjuUHD9M-unsplash.jpg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -19,7 +19,7 @@ body {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.8);
   height: 100vh;
 }
 
@@ -38,21 +38,6 @@ body {
 /* .weather {
   padding-left: 18%;
 } */
-
-.title {
-  width: 19%;
-  transform: translate(100%, 0%);
-  margin-left: 4%;
-}
-
-.main-title {
-  font-size: 31px;
-  color: #8a7f7f;
-  font-weight: 600;
-  /* position: absolute;
-  right: 0;
-  padding-right: 2%; */
-}
 
 /* .cloud {
   position: absolute;
@@ -77,8 +62,8 @@ body {
 
 .search-container {
   position: relative;
-  width: 30%;
-  right: 2%;
+  width: 34%;
+  left: 27%;
 }
 
 .search-container i {
@@ -120,12 +105,13 @@ body {
 
 .city {
   width: auto;
-  font-size: 19px;
+  font-size: 20px;
   font-weight: 400;
   margin-top: 12px;
-  padding-right: 2.3%;
-  padding-left: 4%;
+  padding-left: 13%;
   color: #fff;
+  /* margin-left: auto; */
+  transform: translate(86%, -11%);
 }
 
 .city span {
@@ -146,10 +132,11 @@ body {
 .dropdown {
   position: relative;
   display: inline-block;
+  left: 1%;
 }
 
 .dropdown i {
-  font-size: 25px;
+  font-size: 32px;
   color: #a59a9a;
 }
 
