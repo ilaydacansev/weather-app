@@ -40,8 +40,8 @@ body {
 } */
 
 .cloudy {
-  width: 130px;
-  margin-top: 25px;
+  width: 125px;
+  margin-top: 32px;
 }
 
 .search-container {
@@ -137,8 +137,8 @@ body {
 .dropdown-content {
   display: none;
   position: absolute;
-  background-color: #a6add1;
-  min-width: 160px;
+  background-color: #898ea6;
+  min-width: 220px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
 }
@@ -150,6 +150,7 @@ body {
 .dropdown-content a {
   color: black;
   padding: 12px 16px;
+  font-size: 16px;
   text-decoration: none;
   display: block;
 }
@@ -164,22 +165,23 @@ body {
 
 .content {
   display: flex;
-  width: 100%;
-  padding-left: 5%;
+  width: 27%;
+  /* padding-left: 5%; */
   padding-top: 5%;
+  position: relative;
+  right: 27%;
 }
 
 .more-info {
   display: flex;
   flex-direction: column;
-  transform: translate(0%, 7%);
   position: fixed;
-  left: 75%;
-  top: 265px;
+  left: 70%;
+  top: 250px;
 }
 
 .information {
-  margin-left: 4%;
+  margin-left: 9%;
 }
 
 .day {
@@ -194,7 +196,7 @@ body {
 }
 
 .feel {
-  font-size: 18px;
+  font-size: 24px;
   font-weight: 300;
   color: #fff;
 }
@@ -211,21 +213,28 @@ body {
   font-weight: 700;
 }
 
+.dropdown-content hr {
+  height: 2px;
+  margin: 7px 0;
+}
+
 .desc {
-  font-size: 20px;
+  font-size: 33.5px;
   font-style: italic;
   color: #fff;
+  margin-bottom: 4%;
 }
 
 .minmax {
   display: flex;
-  height: 20%;
+  height: auto;
   position: relative;
   /* bottom: 0; */
   font-size: 17px;
   /* text-shadow: 1px 5px rgba(0, 0, 0, 0.8); */
   color: #fff;
-  right: 30%;
+  right: 26%;
+  margin-top: 12px;
 }
 
 .minmax i {
