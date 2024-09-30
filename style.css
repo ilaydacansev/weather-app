@@ -39,9 +39,9 @@ body {
   width: auto;
 } */
 
-.cloudy {
+.weather-icon {
   width: 125px;
-  margin-top: 32px;
+  margin-top: 50px;
 }
 
 .search-container {
@@ -185,9 +185,10 @@ body {
 }
 
 .day {
+  width: fit-content;
   font-size: 16.5px;
   font-weight: 300;
-  transform: translate(-10%, 33%);
+  transform: translate(27%, 84%);
   /* margin-bottom: 9px; */
   color: #fff;
   /* transform: translate(117%, 214%);
@@ -206,12 +207,14 @@ body {
   /* font-weight: 700; */
   /* margin-bottom: 9px; */
   color: #fff;
-}
-
-.temp h1 {
   font-size: 100px;
   font-weight: 700;
 }
+
+/* .temp h1 {
+  font-size: 100px;
+  font-weight: 700;
+} */
 
 .dropdown-content hr {
   height: 2px;
