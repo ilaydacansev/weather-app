@@ -46,22 +46,21 @@ const displayResult = (result) => {
   let feel = document.querySelector(".feel");
   feel.innerText = `Hissedilen ${Math.round(result.main.feels_like)}°C`;
 
+  let time = document.querySelector(".time");
+  time.innerText = `Bugün: ${result.weather[0].description}`;
+
   let icon = document.querySelector(".weather-icon");
   const weatherIconCode = result.weather[0].icon;
   icon.src = `http://openweathermap.org/img/wn/${weatherIconCode}@2x.png`;
 };
 
-// fetch(query)
-//   .then((weather) => {
-//     if (!weather.ok) {
-//       throw new Error("Network response was not ok");
-//     }
-//     return weather.json();
-//   })
-//   .then(displayResult)
-//   .catch((error) => {
-//     console.error("There was a problem with the fetch operation:", error);
-//   });
-
 const searchBar = document.getElementById("searchBar");
 searchBar.addEventListener("keypress", setQuery);
+
+function setActive(element) {
+  const guns = document.querySelectorAll(".day");
+  guns.forEach((day) => {
+    day.classList.remove("active"); // Diğer günlerden 'active' sınıfını kaldır
+  });
+  element.classList.add("active"); // Tıklanan elemana 'active' sınıfını ekle
+}

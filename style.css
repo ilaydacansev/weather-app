@@ -30,7 +30,7 @@ body {
 }
 
 .header {
-  padding: 27px 11px 26px 11px;
+  padding: 10px 11px 26px 11px;
   display: flex;
   width: 100%;
 }
@@ -174,7 +174,7 @@ body {
   display: flex;
   width: 27%;
   /* padding-left: 5%; */
-  padding-top: 5%;
+  /* padding-top: 25px; */
   position: relative;
   right: 27%;
 }
@@ -182,16 +182,60 @@ body {
 .more-info {
   display: flex;
   flex-direction: column;
-  position: fixed;
+  position: absolute;
   left: 70%;
-  top: 250px;
+  top: 200px;
 }
 
-.information {
-  margin-left: 9%;
+.days {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 50px;
+  padding-top: 110px;
 }
 
 .day {
+  flex: 1;
+  width: 50px;
+  text-align: center;
+  margin: 10px;
+  /* margin-left: 12px; */
+  box-sizing: border-box;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.day:hover {
+  background-color: transparent #a6b6e4;
+  border: 2px solid #a6b6e4;
+  border-radius: 10px;
+}
+
+.active {
+  background-color: transparent;
+  border: 2px solid #a6b6e4;
+  border-radius: 10px;
+}
+
+.day img {
+  width: 40%;
+  margin-left: 30%;
+  margin-bottom: 12px;
+}
+
+.day span {
+  margin-bottom: 15px;
+}
+
+.time .information {
+  margin-left: 9%;
+}
+
+.time {
   width: fit-content;
   font-size: 16.5px;
   font-weight: 300;
@@ -244,7 +288,7 @@ body {
   /* text-shadow: 1px 5px rgba(0, 0, 0, 0.8); */
   color: #fff;
   right: 26%;
-  margin-top: 12px;
+  /* margin-top: 12px; */
 }
 
 .minmax i {
