@@ -100,11 +100,15 @@ body {
 
 .city span {
   color: #cdd0df;
+  font-weight: 700;
 }
 
-.city i {
+.fa-location-dot {
   color: #cdd0df;
-  padding-right: 6px;
+  position: relative;
+  left: 39%;
+  font-size: 24px;
+  padding-top: 7.5px;
 }
 
 /* .information {

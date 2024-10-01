@@ -30,7 +30,7 @@ const getResult = (cityName) => {
 
 const displayResult = (result) => {
   let city = document.querySelector(".city");
-  city.innerText = `${result.name}, ${result.sys.country}`;
+  city.innerText = `${result.name}, ${result.sys.country} 'de Hava Durumu`;
 
   let temp = document.querySelector(".temp");
   temp.innerText = `${Math.round(result.main.temp)}°C`;
@@ -39,17 +39,31 @@ const displayResult = (result) => {
   desc.innerText = result.weather[0].description;
 
   let minmax = document.querySelector(".minmax");
-  minmax.innerText = `${Math.round(result.main.temp_min)}°C ${(
-    <i class="fa-solid fa-circle"></i>
-  )} ${Math.round(result.main.temp_max)}°C`;
+  minmax.innerText = `En yüksek sıcaklık ${Math.round(
+    result.main.temp_min
+  )}°C &nbsp&nbsp  ⚫︎  &nbsp&nbsp En düşük sıcaklık ${Math.round(
+    result.main.temp_max
+  )}°C`;
 
   let feel = document.querySelector(".feel");
-  feel.innerText = `${Math.random(result.main.feels_like)}°C`;
+  feel.innerText = `Hissedilen ${Math.round(result.main.feels_like)}°C`;
 
-  let icon = document.querySelector(".weather-icon");
-  const weatherIconCode = result.weather[0].icon; // API'den gelen simge kodu
-  icon.src = `http://openweathermap.org/img/wn/${weatherIconCode}@2x.png`;
+  // let icon = document.querySelector(".weather-icon");
+  // const weatherIconCode = result.weather[0].icon; // API'den gelen simge kodu
+  // icon.src = `http://openweathermap.org/img/wn/${weatherIconCode}@2x.png`;
 };
+
+// fetch(query)
+//   .then((weather) => {
+//     if (!weather.ok) {
+//       throw new Error("Network response was not ok");
+//     }
+//     return weather.json();
+//   })
+//   .then(displayResult)
+//   .catch((error) => {
+//     console.error("There was a problem with the fetch operation:", error);
+//   });
 
 const searchBar = document.getElementById("searchBar");
 searchBar.addEventListener("keypress", setQuery);
