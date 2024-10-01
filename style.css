@@ -92,10 +92,12 @@ body {
   font-size: 20px;
   font-weight: 400;
   margin-top: 12px;
-  padding-left: 13%;
+  /* padding-left: 13%; */
   color: #fff;
   /* margin-left: auto; */
-  transform: translate(86%, -11%);
+  transform: translate(0, -28%);
+  position: absolute;
+  left: 75%;
 }
 
 .city span {
@@ -106,9 +108,10 @@ body {
 .fa-location-dot {
   color: #cdd0df;
   position: relative;
-  left: 39%;
+  left: 35%;
   font-size: 24px;
   padding-top: 7.5px;
+  margin-right: 10px;
 }
 
 /* .information {
