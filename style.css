@@ -239,12 +239,19 @@ body {
   width: fit-content;
   font-size: 16.5px;
   font-weight: 300;
-  transform: translate(27%, 84%);
-  /* margin-bottom: 9px; */
+  position: relative;
+  left: 94px;
+  top: 17px;
   color: #fff;
-  /* transform: translate(117%, 214%);
-  position: absolute;
-  left: 0; */
+}
+
+.date {
+  font-size: 16.5px;
+  font-weight: 300;
+  color: #fff;
+  position: relative;
+  right: 67px;
+  top: 43px;
 }
 
 .feel {
