@@ -64,3 +64,10 @@ function setActive(element) {
   });
   element.classList.add("active"); // Tıklanan elemana 'active' sınıfını ekle
 }
+
+// let searchBar = document.getElementById(".searchbar"),
+// api_key = "6a4d76c560f8c7925b99f1b3acb1c689";
+
+// function
+
+// searchBar.addEventListener('click', getCityCoordinates);
