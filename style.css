@@ -30,18 +30,22 @@ body {
 }
 
 .header {
-  padding: 10px 11px 26px 11px;
+  padding: 20px 11px 0px 0px;
   display: flex;
   width: 100%;
 }
 
-.cloud {
+/* .cloud {
   height: 65%;
   margin-top: 55px;
-}
+} */
 
 .weather-icon {
-  width: 125px;
+  width: 90px;
+  height: 60px;
+  position: relative;
+  top: 80px;
+  right: 20px;
   /* height: 50%; */
   /* margin-top: 50px; */
 }
@@ -116,11 +120,11 @@ body {
   margin-right: 10px;
 }
 
-/* .information {
-  transform: translate(0, 174%);
-  position: absolute;
+.information {
+  /* transform: translate(0, 174%);
+  position: absolute; */
   left: 23%;
-} */
+}
 
 .dropdown {
   position: relative;
@@ -185,8 +189,14 @@ body {
   display: flex;
   flex-direction: column;
   position: absolute;
-  left: 70%;
-  top: 200px;
+  left: 67%;
+  top: 145px;
+  text-align: start;
+  width: 25%;
+  border: 1px solid #272c3a;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 15px;
+  border-radius: 15px;
 }
 
 .days {
@@ -198,8 +208,8 @@ body {
   /* padding-top: 30px; */
   /* padding-top: 10px; */
   position: relative;
-  top: 85px;
-  height: 200px;
+  top: 100px;
+  height: 194px;
 }
 
 .days-info {
@@ -207,7 +217,7 @@ body {
   justify-content: space-between;
   width: 100%;
   padding: 25px;
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.3);
   /* border: 1px solid #898ea6; */
   border-radius: 15px;
   border: 1px solid #272c3a;
@@ -278,27 +288,39 @@ body {
 }
 
 .feel {
-  font-size: 24px;
-  font-weight: 300;
+  display: flex;
+  justify-content: space-between;
+  font-size: 19px;
+  font-weight: 100;
   color: #fff;
+  padding-bottom: 5px;
 }
 
 .humidity {
-  font-size: 24px;
-  font-weight: 300;
+  display: flex;
+  justify-content: space-between;
+  font-size: 18px;
+  font-weight: 100;
   color: #fff;
+  padding-bottom: 5px;
 }
 
 .sunset {
-  font-size: 24px;
-  font-weight: 300;
+  display: flex;
+  justify-content: space-between;
+  font-size: 19px;
+  font-weight: 100;
   color: #fff;
+  padding-bottom: 5px;
 }
 
 .sunrise {
-  font-size: 24px;
-  font-weight: 300;
+  display: flex;
+  justify-content: space-between;
+  font-size: 18px;
+  font-weight: 100;
   color: #fff;
+  padding-bottom: 5px;
 }
 
 .temp {
@@ -306,7 +328,7 @@ body {
   /* font-weight: 700; */
   /* margin-bottom: 9px; */
   color: #fff;
-  font-size: 95px;
+  font-size: 88px;
   font-weight: 700;
 }
 
@@ -321,22 +343,29 @@ body {
 }
 
 .desc {
-  font-size: 33.5px;
+  font-size: 31.5px;
   font-style: italic;
   color: #fff;
   margin-bottom: 4%;
+  position: relative;
+  right: 415px;
 }
 
 .max {
-  font-size: 24px;
-  font-weight: 300;
+  display: flex;
+  justify-content: space-between;
+  font-size: 19px;
+  font-weight: 100;
   color: #fff;
 }
 
 .min {
-  font-size: 24px;
-  font-weight: 300;
+  display: flex;
+  justify-content: space-between;
+  font-size: 19px;
+  font-weight: 100;
   color: #fff;
+  padding-bottom: 5px;
 }
 
 /* img {

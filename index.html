@@ -26,7 +26,11 @@
 
 <body>
     <div class="app">
-        <div class="header my-3">
+
+        <!-- <div class="bg-photo">
+            <img src="bg-photo.jpg" alt="bg-photo">
+        </div> -->
+        <div class="header">
 
             <div class="dropdown">
                 <button class="dropbtn" id="myDropdown" onclick="toggleDropdown()"><i
@@ -54,9 +58,9 @@
         </div>
 
         <div class="content">
-            <div class="cloud">
-                <img class="weather-icon" src="02d@2x.png" alt="cloudy">
-            </div>
+            <!-- <div class="cloud"> -->
+            <img class="weather-icon" src="kopya.png" alt="cloudy">
+            <!-- </div> -->
 
             <div class="information">
                 <div id="date" class="date">Perşembe &nbsp&nbsp</div>
@@ -70,17 +74,28 @@
         <div class="desc">Az Bulutlu</div>
 
         <div class="more-info">
-            <div class="feel">Hissedilen 9°C</div>
-            <div class="humidity">Ortalama Nem 40%</div>
-            <div class="sunrise">Gün Doğumu 06:38</div>
-            <div class="sunset">Gün Batımı 18:18</div>
+            <div class="feel">Hissedilen
+                <div class="am-pm">9°C</div>
+            </div>
+            <div class="humidity">
+                <div>Ortalama Nem </div>
+                <div>40%</div>
+            </div>
+            <div class="sunrise">
+                <div>Gün Doğumu</div>
+                <div>06:38</div>
+            </div>
+            <div class="sunset">
+                <div>Gün Batımı</div>
+                <div>18:18</div>
+            </div>
             <div class="min">
-                En yüksek sıcaklık &nbsp 17°C
-                &nbsp&nbsp
+                <div>En yüksek sıcaklık</div>
+                <div>17°C</div>
             </div>
             <div class="max">
-                &nbsp&nbsp
-                En düşük sıcaklık &nbsp 13°C
+                <div>En düşük sıcaklık</div>
+                <div>13°C</div>
             </div>
         </div>
 
