@@ -283,6 +283,24 @@ body {
   color: #fff;
 }
 
+.humidity {
+  font-size: 24px;
+  font-weight: 300;
+  color: #fff;
+}
+
+.sunset {
+  font-size: 24px;
+  font-weight: 300;
+  color: #fff;
+}
+
+.sunrise {
+  font-size: 24px;
+  font-weight: 300;
+  color: #fff;
+}
+
 .temp {
   /* font-size: 94px; */
   /* font-weight: 700; */
@@ -309,23 +327,16 @@ body {
   margin-bottom: 4%;
 }
 
-.minmax {
-  display: flex;
-  height: auto;
-  position: relative;
-  /* bottom: 0; */
-  font-size: 17px;
-  /* text-shadow: 1px 5px rgba(0, 0, 0, 0.8); */
+.max {
+  font-size: 24px;
+  font-weight: 300;
   color: #fff;
-  right: 27%;
-  /* margin-top: 12px; */
 }
 
-.minmax i {
-  margin-left: 26px;
-  margin-right: 24px;
-  margin-top: 9px;
-  font-size: 10px;
+.min {
+  font-size: 24px;
+  font-weight: 300;
+  color: #fff;
 }
 
 /* img {
