@@ -70,17 +70,11 @@ const dateElement = document.getElementById("date");
 const city = document.getElementById("city");
 const temp = document.getElementById("temp");
 const desc = document.getElementById("desc");
-const feel = document.getElementById("feel");
-const humidity = document.getElementById("humidity");
-const sunrise = document.getElementById("sunrise");
-const sunset = document.getElementById("sunset");
-const min = document.getElementById("min");
-const max = document.getElementById("max");
 const days = document.getElementById("days");
 const days_info = document.getElementById("days-info");
 const dayElement = document.getElementById("day");
 
-const key = "6a4d76c560f8c7925b99f1b3acb1c689";
+// const  = "6a4d76c560f8c7925b99f1b3acb1c689";
 
 const daysOfWeek = [
   "Pazar",
@@ -123,19 +117,18 @@ setInterval(() => {
 }, 500);
 
 getWeatherData();
+
+const key = "6a4d76c560f8c7925b99f1b3acb1c689";
+const more_info = document.getElementById("more_info");
+
+getWeatherData();
+
 function getWeatherData() {
   navigator.geolocation.getCurrentPosition((success) => {
     let { latitude, longitude } = success.coords;
 
-    // fetch(
-    //   "https://api.openweathermap.org/data/3.0/onecall?lat=${latitude}&lon=${longitude}&exclude=hourly,minutely&appid=${key}"
-    // )
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     console.log(data);
-    //   });
     fetch(
-      `https://api.openweathermap.org/data/3.0/onecall?lat=${latitude}&lon=${longitude}&exclude=hourly,minutely&appid=${key}`
+      `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${key}`
     )
       .then((response) => {
         if (!response.ok) {
@@ -145,12 +138,32 @@ function getWeatherData() {
       })
       .then((data) => {
         console.log(data);
+        showWeatherData(data);
       })
       .catch((error) => {
-        console.error(
-          "There has been a problem with your fetch operation:",
-          error
-        );
+        console.error("Fetch işlemi sırasında bir sorun oluştu:", error);
       });
   });
+}
+
+function showWeatherData(data) {
+  const item = data.list[0];
+
+  const temp = (item.main.temp - 273.15).toFixed(1);
+  const humidity = item.main.humidity;
+  const feels_like = (item.main.feels_like - 273.15).toFixed(1);
+  const sunriseTime = new Date(item.sys.sunrise * 1000).toLocaleTimeString();
+  const sunsetTime = new Date(item.sys.sunset * 1000).toLocaleTimeString();
+  const temp_max = (item.main.temp_max - 273.15).toFixed(1);
+  const temp_min = (item.main.temp_min - 273.15).toFixed(1);
+
+  more_info.innerHTML = `
+    
+        <div class="weather-item">Hissedilen: ${feels_like}</div>
+        <div class="weather-item">Ortalama Nem: ${humidity}</div>
+        <div class="weather-item">Gün Doğumu: ${sunriseTime}</div>
+        <div class="weather-item">Gün Batımı: ${sunsetTime}</div>
+        <div class="weather-item">En yüksek sıcaklık: ${temp_max}</div>
+        <div class="weather-item">En düşük sıcaklık: ${temp_min}</div>
+    `;
 }

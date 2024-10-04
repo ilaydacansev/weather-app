@@ -2,6 +2,8 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
 }
 
 body {
@@ -291,6 +293,15 @@ body {
   /* top: 45px; */
   bottom: 30px;
   left: 180px;
+}
+
+.weather-item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 19px;
+  font-weight: 100;
+  color: #fff;
+  padding-bottom: 5px;
 }
 
 .feel {
