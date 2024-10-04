@@ -65,5 +65,92 @@ window.onclick = function (event) {
 //   element.classList.add("active"); // Tıklanan elemana 'active' sınıfını ekle
 // }
 
-const time = document.getElementById("time");
-const date = document.getElementById("date");
+const timeElement = document.getElementById("time");
+const dateElement = document.getElementById("date");
+const city = document.getElementById("city");
+const temp = document.getElementById("temp");
+const desc = document.getElementById("desc");
+const feel = document.getElementById("feel");
+const humidity = document.getElementById("humidity");
+const sunrise = document.getElementById("sunrise");
+const sunset = document.getElementById("sunset");
+const min = document.getElementById("min");
+const max = document.getElementById("max");
+const days = document.getElementById("days");
+const days_info = document.getElementById("days-info");
+const dayElement = document.getElementById("day");
+
+const key = "6a4d76c560f8c7925b99f1b3acb1c689";
+
+const daysOfWeek = [
+  "Pazar",
+  "Pazartesi",
+  "Salı",
+  "Çarşamba",
+  "Perşembe",
+  "Cuma",
+  "Cumartesi",
+];
+
+const monthsOfYear = [
+  "Ocak",
+  "Şubat",
+  "Mart",
+  "Nisan",
+  "Mayıs",
+  "Haziran",
+  "Temmuz",
+  "Ağustos",
+  "Eylül",
+  "Ekim",
+  "Kasım",
+  "Aralık",
+];
+
+setInterval(() => {
+  const time = new Date();
+  const month = monthsOfYear[time.getMonth()];
+  const date = time.getDate();
+  const day = daysOfWeek[time.getDay()];
+  const hour = time.getHours();
+  const minutes = time.getMinutes();
+
+  timeElement.innerHTML = `${hour < 10 ? "0" + hour : hour}:${
+    minutes < 10 ? "0" + minutes : minutes
+  }`;
+
+  dateElement.innerHTML = `${day}, ${date} ${month}`;
+}, 500);
+
+getWeatherData();
+function getWeatherData() {
+  navigator.geolocation.getCurrentPosition((success) => {
+    let { latitude, longitude } = success.coords;
+
+    // fetch(
+    //   "https://api.openweathermap.org/data/3.0/onecall?lat=${latitude}&lon=${longitude}&exclude=hourly,minutely&appid=${key}"
+    // )
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     console.log(data);
+    //   });
+    fetch(
+      `https://api.openweathermap.org/data/3.0/onecall?lat=${latitude}&lon=${longitude}&exclude=hourly,minutely&appid=${key}`
+    )
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        console.error(
+          "There has been a problem with your fetch operation:",
+          error
+        );
+      });
+  });
+}
