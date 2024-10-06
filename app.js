@@ -73,8 +73,9 @@ const cityElement = document.getElementById("city");
 const tempElement = document.getElementById("temp");
 const descElement = document.getElementById("desc");
 const more_info = document.getElementById("more_info");
+const info = document.getElementById("information");
 
-const key = "6a4d76c560f8c7925b99f1b3acb1c689"; // API anahtarınız
+const key = `6a4d76c560f8c7925b99f1b3acb1c689`;
 const url = "https://api.openweathermap.org/data/2.5/";
 
 const setQuery = (e) => {
@@ -104,12 +105,36 @@ const displayResult = (result) => {
   const forecast = result.weather[0];
   icon.src = `https://openweathermap.org/img/wn/${forecast.icon}@2x.png`;
 
-  // Ek bilgi ile birlikte hava durumu verilerini göster
   showWeatherData(result);
 };
 
 const searchBar = document.getElementById("searchBar");
 searchBar.addEventListener("keypress", setQuery);
+
+const monthsOfYear = [
+  "Ocak",
+  "Şubat",
+  "Mart",
+  "Nisan",
+  "Mayıs",
+  "Haziran",
+  "Temmuz",
+  "Ağustos",
+  "Eylül",
+  "Ekim",
+  "Kasım",
+  "Aralık",
+];
+
+const daysOfWeek = [
+  "Pazar",
+  "Pazartesi",
+  "Salı",
+  "Çarşamba",
+  "Perşembe",
+  "Cuma",
+  "Cumartesi",
+];
 
 setInterval(() => {
   const time = new Date();
@@ -125,11 +150,144 @@ setInterval(() => {
   dateElement.innerHTML = `${day}, ${date} ${month}`;
 }, 500);
 
+// !
+
+if (navigator.geolocation) {
+  navigator.geolocation.getCurrentPosition(success, error);
+} else {
+  temp.innerHTML = "Geolocation desteği yok.";
+}
+
+function success(position) {
+  const lat = position.coords.latitude;
+  const lon = position.coords.longitude;
+
+  // Hava durumu verilerini çekmek için API'yi kullan
+  fetch(
+    `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${key}&units=metric`
+  )
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Ağ yanıtı hatalı.");
+      }
+      return response.json();
+    })
+    .then((data) => {
+      console.log(data); // API'den gelen yanıtı kontrol et
+      if (data.main && data.main.temp) {
+        temp.innerHTML = ` ${Math.round(data.main.temp)} °C`;
+      } else {
+        temp.innerHTML = "Sıcaklık bilgisi alınamadı.";
+      }
+    })
+    .catch((err) => {
+      temp.innerHTML = "Hava durumu verileri alınamadı.";
+      console.error(err);
+    });
+}
+
+function error(err) {
+  console.error(err);
+  temp.innerHTML = "Konum alınamadı.";
+}
+
+// !
+
+// function showWeatherData(data) {
+//   const humidity = data.main.humidity;
+//   const feels_like = data.main.feels_like;
+//   const temp_max = data.main.temp_max;
+//   const temp_min = data.main.temp_min;
+
+//   const sunriseTimestamp = data.sys.sunrise;
+//   const sunsetTimestamp = data.sys.sunset;
+
+//   const sunriseTime = sunriseTimestamp
+//     ? new Date(sunriseTimestamp * 1000).toLocaleTimeString("tr-TR", {
+//         timeZone: "Europe/Istanbul",
+//         hour: "2-digit",
+//         minute: "2-digit",
+//       })
+//     : "Geçersiz zaman";
+
+//   const sunsetTime = sunsetTimestamp
+//     ? new Date(sunsetTimestamp * 1000).toLocaleTimeString("tr-TR", {
+//         timeZone: "Europe/Istanbul",
+//         hour: "2-digit",
+//         minute: "2-digit",
+//       })
+//     : "Geçersiz zaman";
+
+// function setDefaultWeatherInfo() {
+//   document
+//     .getElementById("feel")
+//     .querySelector("div").innerText = `${Math.round(feels_like)}°C`;
+//   document
+//     .getElementById("humidity")
+//     .querySelector("div").innerText = `${Math.round(humidity)}%`;
+//   document
+//     .getElementById("sunrise")
+//     .querySelector("div").innerText = `${sunriseTime}`;
+//   document
+//     .getElementById("sunset")
+//     .querySelector("div").innerText = `${sunsetTime}`;
+//   document.getElementById("min").querySelector("div").innerText = `${Math.round(
+//     temp_min
+//   )}°C`;
+//   document.getElementById("max").querySelector("div").innerText = `${Math.round(
+//     temp_max
+//   )}°C`;
+// }
+
+// setDefaultWeatherInfo();
+
+// const content = document.getElementById("content");
+
+document.getElementById("more_info").addEventListener("click", () => {
+  const city = document.getElementById("city").value;
+
+  const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${key}&units=metric`;
+
+  fetch(url)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Şehir bulunamadı.");
+      }
+      return response.json();
+    })
+    .then((data) => {
+      showWeatherData(data);
+    })
+    .catch((err) => {
+      console.error("Hata:", err);
+      setDefaultWeatherInfo();
+    });
+});
+
+function setDefaultWeatherInfo() {
+  more_info.innerHTML = `
+          <div class="weather-item">Hissedilen <span>${Math.round(
+            feels_like
+          )}°C</span></div>
+          <div class="weather-item">Ortalama Nem <span>${Math.round(
+            humidity
+          )}%</span></div>
+          <div class="weather-item">Gün Doğumu <span>${sunriseTime}</span></div>
+          <div class="weather-item">Gün Batımı <span>${sunsetTime}</span></div>
+          <div class="weather-item">En yüksek sıcaklık <span>${Math.round(
+            temp_max
+          )}°C</span></div>
+          <div class="weather-item">En düşük sıcaklık <span>${Math.round(
+            temp_min
+          )}°C</span></div>
+      `;
+}
+
 function showWeatherData(data) {
   const humidity = data.main.humidity;
   const feels_like = data.main.feels_like;
-  const temp_max = data.main.temp_max; // En yüksek sıcaklık
-  const temp_min = data.main.temp_min; // En düşük sıcaklık
+  const temp_max = data.main.temp_max;
+  const temp_min = data.main.temp_min;
 
   const sunriseTimestamp = data.sys.sunrise;
   const sunsetTimestamp = data.sys.sunset;
@@ -150,23 +308,94 @@ function showWeatherData(data) {
       })
     : "Geçersiz zaman";
 
-  more_info.innerHTML = `
-        <div class="weather-item">Hissedilen <span>${Math.round(
-          feels_like
-        )}°C</span></div>
-        <div class="weather-item">Ortalama Nem <span>${Math.round(
-          humidity
-        )}%</span></div>
-        <div class="weather-item">Gün Doğumu <span>${sunriseTime}</span></div>
-        <div class="weather-item">Gün Batımı <span>${sunsetTime}</span></div>
-        <div class="weather-item">En yüksek sıcaklık <span>${Math.round(
-          temp_max
-        )}°C</span></div>
-        <div class="weather-item">En düşük sıcaklık <span>${Math.round(
-          temp_min
-        )}°C</span></div>
-    `;
+  // document
+  //   .getElementById("feel")
+  //   .querySelector("div").innerText = `${Math.round(feels_like)}°C`;
+  // document
+  //   .getElementById("humidity")
+  //   .querySelector("div").innerText = `${Math.round(humidity)}%`;
+  // document.getElementById("sunrise").querySelector("div").innerText =
+  //   sunriseTime;
+  // document.getElementById("sunset").querySelector("div").innerText = sunsetTime;
+  // document.getElementById("min").querySelector("div").innerText = `${Math.round(
+  //   temp_min
+  // )}°C`;
+  // document.getElementById("max").querySelector("div").innerText = `${Math.round(
+  //   temp_max
+  // )}°C`;
 }
+
+// Sayfa yüklendiğinde varsayılan bilgileri ayarla
+setDefaultWeatherInfo();
+
+// ?
+
+// document.getElementById("more_info").addEventListener("click", () => {
+//   const city = document.getElementById("city").value;
+//   const key = "6a4d76c560f8c7925b99f1b3acb1c689";
+//   const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${key}&units=metric`;
+
+//   fetch(url)
+//     .then((response) => {
+//       if (!response.ok) {
+//         throw new Error("Şehir bulunamadı.");
+//       }
+//       return response.json();
+//     })
+//     .then((data) => {
+//       showWeatherData(data);
+//     })
+//     .catch((err) => {
+//       console.error("Hata:", err);
+
+//       setDefaultWeatherInfo();
+//     });
+// });
+
+// function showWeatherData(data) {
+//   const humidity = data.main.humidity;
+//   const feels_like = data.main.feels_like;
+//   const temp_max = data.main.temp_max;
+//   const temp_min = data.main.temp_min;
+
+//   const sunriseTimestamp = data.sys.sunrise;
+//   const sunsetTimestamp = data.sys.sunset;
+
+//   const sunriseTime = sunriseTimestamp
+//     ? new Date(sunriseTimestamp * 1000).toLocaleTimeString("tr-TR", {
+//         timeZone: "Europe/Istanbul",
+//         hour: "2-digit",
+//         minute: "2-digit",
+//       })
+//     : "Geçersiz zaman";
+
+//   const sunsetTime = sunsetTimestamp
+//     ? new Date(sunsetTimestamp * 1000).toLocaleTimeString("tr-TR", {
+//         timeZone: "Europe/Istanbul",
+//         hour: "2-digit",
+//         minute: "2-digit",
+//       })
+//     : "Geçersiz zaman";
+
+//   more_info.innerHTML = `
+//         <div class="weather-item">Hissedilen <span>${Math.round(
+//           feels_like
+//         )}°C</span></div>
+//         <div class="weather-item">Ortalama Nem <span>${Math.round(
+//           humidity
+//         )}%</span></div>
+//         <div class="weather-item">Gün Doğumu <span>${sunriseTime}</span></div>
+//         <div class="weather-item">Gün Batımı <span>${sunsetTime}</span></div>
+//         <div class="weather-item">En yüksek sıcaklık <span>${Math.round(
+//           temp_max
+//         )}°C</span></div>
+//         <div class="weather-item">En düşük sıcaklık <span>${Math.round(
+//           temp_min
+//         )}°C</span></div>
+//     `;
+// }
+
+// ?
 
 // const timeElement = document.getElementById("time");
 // const dateElement = document.getElementById("date");

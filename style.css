@@ -43,8 +43,8 @@ body {
 } */
 
 .weather-icon {
-  width: 90px;
-  height: 60px;
+  /* width: 90px;
+  height: 60px; */
   position: relative;
   top: 70px;
   right: 210px;
@@ -188,7 +188,7 @@ body {
   /* padding-top: 25px; */
   position: relative;
   right: 30%;
-  top: 70px;
+  top: 45px;
 }
 
 .more-info {
@@ -368,8 +368,8 @@ body {
   font-style: italic;
   color: #fff;
   position: absolute;
-  right: 80px;
-  top: 155px;
+  right: 55px;
+  top: 200px;
   width: fit-content;
 }
 
