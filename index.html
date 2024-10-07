@@ -46,7 +46,9 @@
 
             <div class="search-container">
                 <i class="fa-solid fa-magnifying-glass"></i>
-                <input type="text" id="searchBar" class="mt-2" placeholder="Bir konum için arama yapın..">
+                <input type="text" id="searchBar" class="mt-2" placeholder="Bir konum için arama yapın.."
+                    oninput="filterCities()">
+                <ul id="list"></ul>
             </div>
 
             <i class="fa-solid fa-location-dot"></i>
@@ -58,9 +60,6 @@
         </div>
 
         <div class="content" id="content">
-            <!-- <div class="cloud"> -->
-            <!-- <img class="weather-icon text-lef" src="kopya.png" alt="cloudy"> -->
-            <!-- </div> -->
 
             <div id="information" class="information">
                 <img class="weather-icon text-left" src="02d@2x.png" alt="cloudy">
