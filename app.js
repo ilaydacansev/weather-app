@@ -303,23 +303,187 @@ function showWeatherData(data) {
     `;
 }
 
-// async function fetchCities() {
-//   const response = await fetch('path/to/city.list.json.gz');
-//   const data = await response.json();
-//   return data;
-// }
+// const cities = [
+//   "Adana",
+//   "Adıyaman",
+//   "Afyonkarahisar",
+//   "Ağrı",
+//   "Aksaray",
+//   "Amasya",
+//   "Ankara",
+//   "Antalya",
+//   "Ardahan",
+//   "Artvin",
+//   "Aydın",
+//   "Balıkesir",
+//   "Bartın",
+//   "Batman",
+//   "Bayburt",
+//   "Bilecik",
+//   "Bingöl",
+//   "Bitlis",
+//   "Bolu",
+//   "Burdur",
+//   "Bursa",
+//   "Çanakkale",
+//   "Çankırı",
+//   "Çorum",
+//   "Denizli",
+//   "Diyarbakır",
+//   "Edirne",
+//   "Elazığ",
+//   "Erzincan",
+//   "Erzurum",
+//   "Eskişehir",
+//   "Gaziantep",
+//   "Giresun",
+//   "Gümüşhane",
+//   "Hakkari",
+//   "Hatay",
+//   "Iğdır",
+//   "Isparta",
+//   "İstanbul",
+//   "İzmir",
+//   "Kahramanmaraş",
+//   "Karabük",
+//   "Karamanoğlu",
+//   "Kars",
+//   "Kastamonu",
+//   "Kayseri",
+//   "Kırıkkale",
+//   "Kırklareli",
+//   "Kırşehir",
+//   "Konya",
+//   "Kütahya",
+//   "Malatya",
+//   "Manisa",
+//   "Mardin",
+//   "Mersin",
+//   "Muğla",
+//   "Muş",
+//   "Nevşehir",
+//   "Niğde",
+//   "Ordu",
+//   "Osmaniye",
+//   "Rize",
+//   "Sakarya",
+//   "Samsun",
+//   "Siirt",
+//   "Sinop",
+//   "Sivas",
+//   "Tekirdağ",
+//   "Tokat",
+//   "Trabzon",
+//   "Tunceli",
+//   "Şanlıurfa",
+//   "Uşak",
+//   "Van",
+//   "Yalova",
+//   "Yozgat",
+//   "Zonguldak",
+// ];
 
-// async function showWeather() {
-//   const cityId = document.getElementById('searchBar').value;
-//   const weatherData = await getWeather(cityId);
-//   displayWeather(weatherData);
-// }
+// const input = document.getElementById("searchBar");
+// const searchList = document.getElementById("search-list");
 
-// function displayWeather(data) {
-//   const weatherContainer = document.getElementById('weatherContainer');
-//   weatherContainer.innerHTML = `
-//       <h2>${data.name}</h2>
-//       <p>Sıcaklık: ${data.main.temp} °C</p>
-//       <p>Durum: ${data.weather[0].description}</p>
-//   `;
-// }
+// input.addEventListener("input", function () {
+//   const query = this.value.toLowerCase();
+//   searchList.innerHTML = "";
+
+//   if (query.length > 0) {
+//     const filteredCities = cities.filter((city) =>
+//       city.toLowerCase().startsWith(query)
+//     );
+
+//     filteredCities.forEach((city) => {
+//       const listItem = document.createElement("li");
+//       listItem.textContent = city;
+//       listItem.onclick = () => {
+//         input.value = city;
+//         searchList.innerHTML = "";
+//       };
+//       searchList.appendChild(listItem);
+//     });
+
+//     searchList.style.display = filteredCities.length > 0 ? "block" : "none";
+//   } else {
+//     searchList.style.display = "none";
+//   }
+// });
+
+let cities = [];
+
+// city.list.json dosyasını al
+fetch("path/to/city.list.json") // Dosya yolunu buraya yaz
+  .then((response) => response.json())
+  .then((data) => {
+    // Şehir isimlerini al
+    cities = data.map((city) => city.name);
+  })
+  .catch((error) => console.error("Hata:", error));
+
+const input = document.getElementById("searchBar");
+const searchList = document.getElementById("search-list");
+
+input.addEventListener("input", function () {
+  const query = this.value.toLowerCase();
+  searchList.innerHTML = "";
+
+  if (query.length > 0) {
+    const filteredCities = cities.filter((city) =>
+      city.toLowerCase().startsWith(query)
+    );
+
+    filteredCities.forEach((city) => {
+      const listItem = document.createElement("li");
+      listItem.textContent = city;
+      listItem.onclick = () => {
+        input.value = city;
+        searchList.innerHTML = "";
+      };
+      searchList.appendChild(listItem);
+    });
+
+    searchList.style.display = filteredCities.length > 0 ? "block" : "none";
+  } else {
+    searchList.style.display = "none";
+  }
+});
+
+// !
+// const input = document.getElementById("searchBar");
+// const searchList = document.getElementById("search-list");
+
+// input.addEventListener("input", function () {
+//   const query = this.value;
+
+//   if (query.length > 0) {
+//     fetch(
+//       `http://api.openweathermap.org/geo/1.0/direct?q=${input},${stateCode},${countryCode}&limit=${limit}&appid=${apiKey}&lang=tr`
+//     )
+//       .then((response) => response.json())
+//       .then((data) => {
+//         searchList.innerHTML = "";
+//         data.forEach((city) => {
+//           const listItem = document.createElement("li");
+//           listItem.textContent = `${city.name}, ${city.country}`;
+//           listItem.onclick = () => {
+//             input.value = listItem.textContent;
+//             searchList.innerHTML = "";
+//             searchList.style.display = "none";
+//           };
+//           searchList.appendChild(listItem);
+//         });
+//         searchList.style.display = data.length > 0 ? "block" : "none";
+//       })
+//       .catch((error) => console.error("Error:", error));
+//   } else {
+//     searchList.style.display = "none";
+//   }
+// });
+
+// input.addEventListener("blur", function () {
+//   setTimeout(() => {
+//     searchList.style.display = "none";
+//   }, 100);
+// });

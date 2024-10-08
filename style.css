@@ -72,6 +72,14 @@ body {
   padding-left: 45px;
   color: #cdd0df;
 }
+.header input:hover {
+  border-color: #9bb6d3;
+}
+
+.header input:focus {
+  border-color: #9bb6d3;
+  outline: none;
+}
 
 .search-container input {
   width: 90%;
@@ -87,13 +95,30 @@ body {
   height: 40px;
 }
 
-.header input:hover {
-  border-color: #9bb6d3;
+#search-list {
+  /* border: 1px solid #ccc; */
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  background: white;
+  width: 90%;
+  border: 1px solid #587377;
+  background: #4c5657;
+  position: absolute;
+  left: 20px;
+  color: #fff;
+  border-radius: 10px;
+  top: 53px;
 }
 
-.header input:focus {
-  border-color: #9bb6d3;
-  outline: none;
+#search-list li {
+  padding: 8px;
+  cursor: pointer;
+}
+
+#search-list li:hover {
+  background-color: #f0f0f0;
 }
 
 .city {
