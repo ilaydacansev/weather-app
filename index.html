@@ -1,77 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weather App</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather App Index</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
     <link rel="stylesheet" href="style.css" />
     <link
-        href="https://fonts.googleapis.com/css2?family=Lato&family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;1,600&display=swap"
-        rel="stylesheet" />
+      href="https://fonts.googleapis.com/css2?family=Lato&family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;1,600&display=swap"
+      rel="stylesheet"
+    />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
-        rel="stylesheet">
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
+      rel="stylesheet"
+    />
     <!-- <link rel="icon" href="./favicon.ico" type="image/x-icon"> -->
 
     <script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
-</head>
+  </head>
 
-<body>
+  <body>
     <div class="app">
-
-        <!-- <div class="bg-photo">
+      <!-- <div class="bg-photo">
             <img src="bg-photo.jpg" alt="bg-photo">
         </div> -->
-        <div class="header">
-
-            <div class="dropdown">
-                <button class="dropbtn" id="myDropdown" onclick="toggleDropdown()"><i
-                        class="fa-solid fa-bars"></i></button>
-                <div class="dropdown-content">
-                    <a href="#">10 Günlük Hava Durumu</a>
-                    <hr>
-                    <a href="#">Nem Oranları</a>
-                    <hr>
-                    <a href="#">Gizlilik</a>
-                </div>
-            </div>
-
-            <div class="search-container">
-                <i class="fa-solid fa-magnifying-glass"></i>
-                <input type="text" id="searchBar" class="mt-2" placeholder="Bir konum için arama yapın..">
-                <ul id="search-list" style="display: none;"></ul>
-            </div>
-
-            <i class="fa-solid fa-location-dot"></i>
-
-            <div id="city" class="city">
-                <!-- <i class="fa-solid fa-location-dot"></i> -->
-                Istanbul TR Hava Durumu
-            </div>
+      <div class="header">
+        <div class="dropdown">
+          <button class="dropbtn" id="myDropdown" onclick="toggleDropdown()">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+          <div class="dropdown-content">
+            <a href="#">10 Günlük Hava Durumu</a>
+            <hr />
+            <a href="#">Nem Oranları</a>
+            <hr />
+            <a href="#">Gizlilik</a>
+          </div>
         </div>
 
-        <div class="content" id="content">
-
-            <div id="information" class="information">
-                <img class="weather-icon text-left" src="02d@2x.png" alt="cloudy">
-                <div id="date" class="date"></div>
-                <div id="time" class="time"></div>
-                <div id="temp" class="temp"></div>
-                <div id="desc" class="desc"></div>
-            </div>
+        <div class="search-container">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input
+            type="text"
+            id="searchBar"
+            class="mt-2"
+            placeholder="Bir konum için arama yapın.."
+          />
+          <ul id="search-list" style="display: none"></ul>
         </div>
 
+        <i class="fa-solid fa-location-dot"></i>
 
-        <div id="more_info" class="more-info">
-            <!-- <div id="feel" class="weather-item">Hissedilen
+        <div id="city" class="city">
+          <!-- <i class="fa-solid fa-location-dot"></i> -->
+          Istanbul TR Hava Durumu
+        </div>
+      </div>
+
+      <div class="content" id="content">
+        <div id="information" class="information">
+          <img class="weather-icon text-left" src="02d@2x.png" alt="cloudy" />
+          <div id="date" class="date"></div>
+          <div id="time" class="time"></div>
+          <div id="temp" class="temp"></div>
+          <div id="desc" class="desc"></div>
+        </div>
+      </div>
+
+      <div id="more_info" class="more-info">
+        <!-- <div id="feel" class="weather-item">Hissedilen
                 <div>9°C</div>
             </div>
             <div id="humidity" class="weather-item">
@@ -94,84 +104,82 @@
                 <div>En düşük sıcaklık</div>
                 <div>13°C</div>
             </div> -->
+      </div>
+
+      <div id="days" class="days">
+        <div id="days-info" class="days-info">
+          <div id="day" class="day" onclick="setActive(this)">
+            <span>Pazartesi</span>
+
+            <img class="img-day" src="02d@2x.png" alt="cloudy" />
+
+            <p>17°C / 4°C</p>
+          </div>
+          <div id="day" class="day" onclick="setActive(this)">
+            <span>Salı</span>
+
+            <img class="img-day" src="02d@2x.png" alt="cloudy" />
+
+            <p>17°C / 4°C</p>
+          </div>
+          <div id="day" class="day" onclick="setActive(this)">
+            <span>Çarşamba</span>
+
+            <img class="img-day" src="02d@2x.png" alt="cloudy" />
+
+            <p>17°C / 4°C</p>
+          </div>
+          <div id="day" class="day" onclick="setActive(this)">
+            <span>Perşembe</span>
+
+            <img class="img-day" src="02d@2x.png" alt="cloudy" />
+
+            <p>17°C / 4°C</p>
+          </div>
+          <div id="day" class="day" onclick="setActive(this)">
+            <span>Cuma</span>
+
+            <img class="img-day" src="02d@2x.png" alt="cloudy" />
+
+            <p>17°C / 4°C</p>
+          </div>
+          <div id="day" class="day" onclick="setActive(this)">
+            <span>Cumartesi</span>
+
+            <img class="img-day" src="02d@2x.png" alt="cloudy" />
+
+            <p>17°C / 4°C</p>
+          </div>
+          <div id="day" class="day" onclick="setActive(this)">
+            <span>Pazar</span>
+
+            <img class="img-day" src="02d@2x.png" alt="cloudy" />
+
+            <p>17°C / 4°C</p>
+          </div>
         </div>
-
-        <div id="days" class="days">
-            <div id="days-info" class="days-info">
-                <div id="day" class="day" onclick="setActive(this)">
-                    <span>Pazartesi</span>
-
-                    <img class="img-day" src="02d@2x.png" alt="cloudy">
-
-                    <p>17°C / 4°C</p>
-                </div>
-                <div id="day" class="day" onclick="setActive(this)">
-                    <span>Salı</span>
-
-                    <img class="img-day" src="02d@2x.png" alt="cloudy">
-
-                    <p>17°C / 4°C</p>
-                </div>
-                <div id="day" class="day" onclick="setActive(this)">
-                    <span>Çarşamba</span>
-
-                    <img class="img-day" src="02d@2x.png" alt="cloudy">
-
-                    <p>17°C / 4°C</p>
-                </div>
-                <div id="day" class="day" onclick="setActive(this)">
-                    <span>Perşembe</span>
-
-                    <img class="img-day" src="02d@2x.png" alt="cloudy">
-
-                    <p>17°C / 4°C</p>
-                </div>
-                <div id="day" class="day" onclick="setActive(this)">
-                    <span>Cuma</span>
-
-                    <img class="img-day" src="02d@2x.png" alt="cloudy">
-
-                    <p>17°C / 4°C</p>
-                </div>
-                <div id="day" class="day" onclick="setActive(this)">
-                    <span>Cumartesi</span>
-
-                    <img class="img-day" src="02d@2x.png" alt="cloudy">
-
-                    <p>17°C / 4°C</p>
-                </div>
-                <div id="day" class="day" onclick="setActive(this)">
-                    <span>Pazar</span>
-
-                    <img class="img-day" src="02d@2x.png" alt="cloudy">
-
-                    <p>17°C / 4°C</p>
-                </div>
-            </div>
-        </div>
-
+      </div>
     </div>
 
-
-
-
     <!-- BOOTSTRAP JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
 
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
 
     <script src="app.js"></script>
 
-
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
-
-</body>
-
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>
