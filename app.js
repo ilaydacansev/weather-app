@@ -75,7 +75,7 @@ const descElement = document.getElementById("desc");
 const more_info = document.getElementById("more_info");
 const info = document.getElementById("information");
 
-const cityName = "Istanbul";
+// const cityName = "Istanbul";
 const key = `6a4d76c560f8c7925b99f1b3acb1c689`;
 const url = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${key}&lang=tr`;
 console.log(`Fetching weather for: ${url}`);
@@ -302,8 +302,7 @@ function showWeatherData(data) {
         )}°C</span></div>
     `;
 }
-
-// const cities = [
+//  const cities = [
 //   "Adana",
 //   "Adıyaman",
 //   "Afyonkarahisar",
@@ -411,79 +410,87 @@ function showWeatherData(data) {
 //   }
 // });
 
-let cities = [];
 
-// city.list.json dosyasını al
-fetch("path/to/city.list.json") // Dosya yolunu buraya yaz
-  .then((response) => response.json())
-  .then((data) => {
-    // Şehir isimlerini al
-    cities = data.map((city) => city.name);
-  })
-  .catch((error) => console.error("Hata:", error));
+
+
+
+
+
+
 
 const input = document.getElementById("searchBar");
 const searchList = document.getElementById("search-list");
+let currentIndex = -1; 
 
-input.addEventListener("input", function () {
-  const query = this.value.toLowerCase();
-  searchList.innerHTML = "";
 
-  if (query.length > 0) {
-    const filteredCities = cities.filter((city) =>
-      city.toLowerCase().startsWith(query)
-    );
+fetch('https://raw.githubusercontent.com/lutangar/cities.json/master/cities.json')
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Ağ isteği başarısız: ' + response.statusText);
+    }
+    return response.json();
+  })
+  .then(data => {
+    input.addEventListener("input", function () {
+      const query = this.value.trim();
+      searchList.innerHTML = ""; 
+      currentIndex = -1; 
 
-    filteredCities.forEach((city) => {
-      const listItem = document.createElement("li");
-      listItem.textContent = city;
-      listItem.onclick = () => {
-        input.value = city;
-        searchList.innerHTML = "";
-      };
-      searchList.appendChild(listItem);
+      if (query.length > 0) {
+        
+        const results = data.filter(city => 
+          city.name.toLowerCase().startsWith(query.toLowerCase())
+        ).slice(0, 5);
+
+        results.forEach((city, index) => {
+          const listItem = document.createElement("li");
+          listItem.textContent = `${city.name}, ${city.country}`;
+          listItem.onclick = () => selectCity(city.name);
+          
+          
+          listItem.onmouseover = () => currentIndex = index;
+          listItem.className = index === currentIndex ? "active" : "";
+          searchList.appendChild(listItem);
+        });
+
+        
+        searchList.style.display = results.length > 0 ? "block" : "none";
+      } else {
+        searchList.style.display = "none"; 
+      }
     });
 
-    searchList.style.display = filteredCities.length > 0 ? "block" : "none";
-  } else {
-    searchList.style.display = "none";
-  }
-});
+    
+    input.addEventListener("keydown", function (event) {
+      const items = searchList.getElementsByTagName("li");
+      if (event.key === "ArrowDown") {
+        currentIndex = (currentIndex + 1) % items.length; 
+        updateSelection(items);
+      } else if (event.key === "ArrowUp") {
+        currentIndex = (currentIndex - 1 + items.length) % items.length; 
+        updateSelection(items);
+      } else if (event.key === "Enter") {
+        if (currentIndex > -1 && items.length > 0) {
+          selectCity(items[currentIndex].textContent.split(",")[0]); 
+        }
+      }
+    });
 
-// !
-// const input = document.getElementById("searchBar");
-// const searchList = document.getElementById("search-list");
+    function updateSelection(items) {
+      for (let i = 0; i < items.length; i++) {
+        items[i].className = i === currentIndex ? "active" : ""; 
+      }
+    }
 
-// input.addEventListener("input", function () {
-//   const query = this.value;
+    function selectCity(cityName) {
+      input.value = cityName; 
+      searchList.innerHTML = "";
+      currentIndex = -1; 
+    }
+  })
+  .catch(error => {
+    console.error('Bir hata oluştu:', error);
+  });
 
-//   if (query.length > 0) {
-//     fetch(
-//       `http://api.openweathermap.org/geo/1.0/direct?q=${input},${stateCode},${countryCode}&limit=${limit}&appid=${apiKey}&lang=tr`
-//     )
-//       .then((response) => response.json())
-//       .then((data) => {
-//         searchList.innerHTML = "";
-//         data.forEach((city) => {
-//           const listItem = document.createElement("li");
-//           listItem.textContent = `${city.name}, ${city.country}`;
-//           listItem.onclick = () => {
-//             input.value = listItem.textContent;
-//             searchList.innerHTML = "";
-//             searchList.style.display = "none";
-//           };
-//           searchList.appendChild(listItem);
-//         });
-//         searchList.style.display = data.length > 0 ? "block" : "none";
-//       })
-//       .catch((error) => console.error("Error:", error));
-//   } else {
-//     searchList.style.display = "none";
-//   }
-// });
 
-// input.addEventListener("blur", function () {
-//   setTimeout(() => {
-//     searchList.style.display = "none";
-//   }, 100);
-// });
+
