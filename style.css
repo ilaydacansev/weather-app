@@ -240,14 +240,14 @@ body {
   /* padding-top: 10px; */
   position: relative;
   top: 133px;
-  height: 194px;
+  height: 220px;
 }
 
 .days-info {
   display: flex;
   justify-content: space-between;
   width: 100%;
-  padding: 25px;
+  padding: 10px;
   background: rgba(0, 0, 0, 0.3);
   /* border: 1px solid #898ea6; */
   border-radius: 15px;
@@ -287,6 +287,10 @@ body {
 }
 
 .day span {
+  margin-bottom: 15px;
+}
+
+.dday {
   margin-bottom: 15px;
 }
 

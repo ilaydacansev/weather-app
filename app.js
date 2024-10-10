@@ -5,6 +5,7 @@ function toggleDropdown() {
 window.onclick = function (event) {
   if (!event.target.matches(".dropbtn")) {
     var dropdowns = document.getElementsByClassName("dropdown-content");
+    document.getElementById('searchBar').value = '';
     for (var i = 0; i < dropdowns.length; i++) {
       dropdowns[i].classList.remove("show");
     }
@@ -319,28 +320,64 @@ const descElement = document.getElementById("desc");
 const more_info = document.getElementById("more_info");
 const input = document.getElementById("searchBar");
 const searchList = document.getElementById("search-list");
+const days = document.getElementById("days");
+const dayElement =document.getElementById("day")
+const dday =document.getElementById("dday")
+const day_info =document.getElementById("days-info")
 let currentIndex = -1;
+
+const months = [
+  "Ocak",
+  "Şubat",
+  "Mart",
+  "Nisan",
+  "Mayıs",
+  "Haziran",
+  "Temmuz",
+  "Ağustos",
+  "Eylül",
+  "Ekim",
+  "Kasım",
+  "Aralık",
+];
+
+const daysOfWeek = [
+  "Pazar",
+  "Pazartesi",
+  "Salı",
+  "Çarşamba",
+  "Perşembe",
+  "Cuma",
+  "Cumartesi",
+];
 
 const key = '6a4d76c560f8c7925b99f1b3acb1c689';
 
-// Hava durumu bilgilerini al
+
 const getWeather = (cityName) => {
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${key}&units=metric&lang=tr`;
-  
+  const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${key}&units=metric&lang=tr`;
+
   fetch(url)
     .then(response => {
       if (!response.ok) throw new Error("Şehir bulunamadı");
       return response.json();
     })
-    .then(displayResult)
+    .then(result => {
+      displayResult(result);
+      return fetch(forecastUrl); // Günlük verileri almak için
+    })
+    .then(response => response.json())
+    .then(data => showWeatherData(data)) // Günlük verileri göster
     .catch(error => {
       console.error(error);
       alert(error.message);
     });
 };
 
+
 const displayResult = (result) => {
-  cityElement.innerText = `${result.name}, ${result.sys.country} Hava Durumu`; // Ülke kısaltması eklendi
+  cityElement.innerText = `${result.name}, ${result.sys.country} Hava Durumu`; 
   tempElement.innerText = `${Math.round(result.main.temp)}°C`;
   descElement.innerText = result.weather[0].description;
   document.querySelector(".weather-icon").src = `https://openweathermap.org/img/wn/${result.weather[0].icon}@2x.png`;
@@ -348,23 +385,43 @@ const displayResult = (result) => {
 };
 
 
-// Hava durumu ile ilgili daha fazla bilgi
-const showWeatherData = (data) => {
-  const { humidity, feels_like, temp_max, temp_min } = data.main;
-  const sunriseTime = new Date(data.sys.sunrise * 1000).toLocaleTimeString("tr-TR", { timeZone: "Europe/Istanbul", hour: "2-digit", minute: "2-digit" });
-  const sunsetTime = new Date(data.sys.sunset * 1000).toLocaleTimeString("tr-TR", { timeZone: "Europe/Istanbul", hour: "2-digit", minute: "2-digit" });
 
+const showWeatherData = (data) => {
+  console.log(data); // Gelen veriyi kontrol et
+  if (!data || !data.list || data.list.length === 0) {
+      console.error("Hava durumu verisi alınamadı.");
+      return;
+  }
+
+  const { humidity, feels_like, temp_max, temp_min } = data.list[0].main;
+  const sunriseTime = new Date(data.city.sunrise * 1000).toLocaleTimeString("tr-TR", { timeZone: "Europe/Istanbul", hour: "2-digit", minute: "2-digit" });
+  const sunsetTime = new Date(data.city.sunset * 1000).toLocaleTimeString("tr-TR", { timeZone: "Europe/Istanbul", hour: "2-digit", minute: "2-digit" });
+
+  day_info.innerHTML = ``; 
+  for (let i = 0; i < 5; i++) { // 7 gün için döngü
+      let date = new Date(data.list[i * 8].dt * 1000); // Her gün için veriyi al
+      day_info.innerHTML += `
+          <div class="day" onclick="setActive(this)">
+              <div class="dday">${date.getDate()} ${months[date.getMonth()]} , ${daysOfWeek[date.getDay()]}</div>
+              <img class="img-day" src="https://openweathermap.org/img/wn/${data.list[i * 8].weather[0].icon}" alt="cloudy" />
+              <span>${(data.list[i * 8].main.temp).toFixed(2)} &deg;C</span>
+          </div>
+      `;
+  }
+  
   more_info.innerHTML = `
-    <div class="weather-item">Hissedilen <span>${Math.round(feels_like)}°C</span></div>
-    <div class="weather-item">Ortalama Nem <span>${Math.round(humidity)}%</span></div>
-    <div class="weather-item">Gün Doğumu <span>${sunriseTime}</span></div>
-    <div class="weather-item">Gün Batımı <span>${sunsetTime}</span></div>
-    <div class="weather-item">En yüksek sıcaklık <span>${Math.round(temp_max)}°C</span></div>
-    <div class="weather-item">En düşük sıcaklık <span>${Math.round(temp_min)}°C</span></div>
+      <div class="weather-item">Hissedilen <span>${Math.round(feels_like)}°C</span></div>
+      <div class="weather-item">Ortalama Nem <span>${Math.round(humidity)}%</span></div>
+      <div class="weather-item">Gün Doğumu <span>${sunriseTime}</span></div>
+      <div class="weather-item">Gün Batımı <span>${sunsetTime}</span></div>
+      <div class="weather-item">En yüksek sıcaklık <span>${Math.round(temp_max)}°C</span></div>
+      <div class="weather-item">En düşük sıcaklık <span>${Math.round(temp_min)}°C</span></div>
   `;
 };
 
-// Şehir arama ve seçim
+
+
+
 fetch('https://raw.githubusercontent.com/lutangar/cities.json/master/cities.json')
   .then(response => {
     if (!response.ok) throw new Error('Ağ isteği başarısız');
@@ -418,7 +475,7 @@ fetch('https://raw.githubusercontent.com/lutangar/cities.json/master/cities.json
   })
   .catch(error => console.error('Bir hata oluştu:', error));
 
-// Saat ve tarih bilgilerini güncelle
+
 setInterval(() => {
   const time = new Date();
   const months = ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"];
@@ -427,7 +484,6 @@ setInterval(() => {
   dateElement.innerHTML = `${days[time.getDay()]}, ${time.getDate()} ${months[time.getMonth()]}`;
 }, 500);
 
-// Konum bilgisi al
 if (navigator.geolocation) {
   navigator.geolocation.getCurrentPosition(success, error);
 } else {
@@ -559,88 +615,4 @@ function error() {
 //     searchList.style.display = "none";
 //   }
 // });
-
-
-
-
-
-
-
-
-
-// const input = document.getElementById("searchBar");
-// const searchList = document.getElementById("search-list");
-// let currentIndex = -1; 
-
-
-// fetch('https://raw.githubusercontent.com/lutangar/cities.json/master/cities.json')
-//   .then(response => {
-//     if (!response.ok) {
-//       throw new Error('Ağ isteği başarısız: ' + response.statusText);
-//     }
-//     return response.json();
-//   })
-//   .then(data => {
-//     input.addEventListener("input", function () {
-//       const query = this.value.trim();
-//       searchList.innerHTML = ""; 
-//       currentIndex = -1; 
-
-//       if (query.length > 0) {
-        
-//         const results = data.filter(city => 
-//           city.name.toLowerCase().startsWith(query.toLowerCase())
-//         ).slice(0, 5);
-
-//         results.forEach((city, index) => {
-//           const listItem = document.createElement("li");
-//           listItem.textContent = `${city.name}, ${city.country}`;
-//           listItem.onclick = () => selectCity(city.name);
-          
-          
-//           listItem.onmouseover = () => currentIndex = index;
-//           listItem.className = index === currentIndex ? "active" : "";
-//           searchList.appendChild(listItem);
-//         });
-
-        
-//         searchList.style.display = results.length > 0 ? "block" : "none";
-//       } else {
-//         searchList.style.display = "none"; 
-//       }
-//     });
-
-    
-//     input.addEventListener("keydown", function (event) {
-//       const items = searchList.getElementsByTagName("li");
-//       if (event.key === "ArrowDown") {
-//         currentIndex = (currentIndex + 1) % items.length; 
-//         updateSelection(items);
-//       } else if (event.key === "ArrowUp") {
-//         currentIndex = (currentIndex - 1 + items.length) % items.length; 
-//         updateSelection(items);
-//       } else if (event.key === "Enter") {
-//         if (currentIndex > -1 && items.length > 0) {
-//           selectCity(items[currentIndex].textContent.split(",")[0]); 
-//         }
-//       }
-//     });
-
-//     function updateSelection(items) {
-//       for (let i = 0; i < items.length; i++) {
-//         items[i].className = i === currentIndex ? "active" : ""; 
-//       }
-//     }
-
-//     function selectCity(cityName) {
-//       input.value = cityName; 
-//       searchList.innerHTML = "";
-//       currentIndex = -1; 
-//     }
-//   })
-//   .catch(error => {
-//     console.error('Bir hata oluştu:', error);
-//   });
-
-
 
