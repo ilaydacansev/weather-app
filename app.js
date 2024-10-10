@@ -67,241 +67,391 @@ window.onclick = function (event) {
 
 // !
 
+// const timeElement = document.getElementById("time");
+// const dateElement = document.getElementById("date");
+// const cityElement = document.getElementById("city");
+// const tempElement = document.getElementById("temp");
+// const descElement = document.getElementById("desc");
+// const more_info = document.getElementById("more_info");
+// const info = document.getElementById("information");
+
+// const cityName = "Istanbul";
+// const key = `6a4d76c560f8c7925b99f1b3acb1c689`;
+// const url = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${key}&lang=tr`;
+// console.log(`Fetching weather for: ${url}`);
+
+// const key = `6a4d76c560f8c7925b99f1b3acb1c689`;
+// const url =
+//   "https://api.openweathermap.org/data/2.5/weather?q=İstanbul&appid=6a4d76c560f8c7925b99f1b3acb1c689&lang=tr";
+
+// fetch(url)
+//   .then((response) => response.json())
+//   .then((data) => {
+//     console.log(data);
+//   })
+//   .catch((error) => console.error("Error:", error));
+
+// const setQuery = (e) => {
+//   if (e.key === "Enter") getResult(searchBar.value);
+// };
+
+// const getResult = (cityName) => {
+//   let query = `${url}weather?q=${cityName}&appid=${key}&units=metric&lang=tr`;
+//   fetch(query)
+//     .then((weather) => {
+//       if (!weather.ok) throw new Error("Şehir bulunamadı");
+//       return weather.json();
+//     })
+//     .then(displayResult)
+//     .catch((error) => {
+//       console.error(error);
+//       alert(error.message);
+//     });
+// };
+
+// const displayResult = (result) => {
+//   cityElement.innerText = `${result.name}, ${result.sys.country}   Hava Durumu`;
+//   tempElement.innerText = `${Math.round(result.main.temp)}°C`;
+
+//   const descElement = document.querySelector("#desc");
+//   descElement.innerText = result.weather[0].description;
+
+//   let icon = document.querySelector(".weather-icon");
+//   const forecast = result.weather[0];
+//   icon.src = `https://openweathermap.org/img/wn/${forecast.icon}@2x.png`;
+
+//   showWeatherData(result);
+// };
+
+// const searchBar = document.getElementById("searchBar");
+// searchBar.addEventListener("keypress", setQuery);
+
+// const monthsOfYear = [
+//   "Ocak",
+//   "Şubat",
+//   "Mart",
+//   "Nisan",
+//   "Mayıs",
+//   "Haziran",
+//   "Temmuz",
+//   "Ağustos",
+//   "Eylül",
+//   "Ekim",
+//   "Kasım",
+//   "Aralık",
+// ];
+
+// const daysOfWeek = [
+//   "Pazar",
+//   "Pazartesi",
+//   "Salı",
+//   "Çarşamba",
+//   "Perşembe",
+//   "Cuma",
+//   "Cumartesi",
+// ];
+
+// setInterval(() => {
+//   const time = new Date();
+//   const month = monthsOfYear[time.getMonth()];
+//   const date = time.getDate();
+//   const day = daysOfWeek[time.getDay()];
+//   const hour = time.getHours();
+//   const minutes = time.getMinutes();
+
+//   timeElement.innerHTML = `${hour < 10 ? "0" + hour : hour}:${
+//     minutes < 10 ? "0" + minutes : minutes
+//   }`;
+//   dateElement.innerHTML = `${day}, ${date} ${month}`;
+// }, 500);
+
+// !
+
+// if (navigator.geolocation) {
+//   navigator.geolocation.getCurrentPosition(success, error);
+// } else {
+//   temp.innerHTML = "Geolocation desteği yok.";
+// }
+
+// function success(position) {
+//   const lat = position.coords.latitude;
+//   const lon = position.coords.longitude;
+
+//   fetch(
+//     `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${key}&units=metric`
+//   )
+//     .then((response) => {
+//       if (!response.ok) {
+//         throw new Error("Ağ yanıtı hatalı.");
+//       }
+//       return response.json();
+//     })
+//     .then((data) => {
+//       console.log(data);
+//       if (data.main && data.main.temp) {
+//         temp.innerHTML = ` ${Math.round(data.main.temp)} °C`;
+
+//         const humidity = data.main.humidity;
+//         const feels_like = data.main.feels_like;
+//         const temp_max = data.main.temp_max;
+//         const temp_min = data.main.temp_min;
+
+//         descElement.innerHTML = `<div>${data.weather[0].description}</div>`;
+
+//         const sunriseTimestamp = data.sys.sunrise;
+//         const sunsetTimestamp = data.sys.sunset;
+
+//         const sunriseTime = sunriseTimestamp
+//           ? new Date(sunriseTimestamp * 1000).toLocaleTimeString("tr-TR", {
+//               timeZone: "Europe/Istanbul",
+//               hour: "2-digit",
+//               minute: "2-digit",
+//             })
+//           : "Geçersiz zaman";
+
+//         const sunsetTime = sunsetTimestamp
+//           ? new Date(sunsetTimestamp * 1000).toLocaleTimeString("tr-TR", {
+//               timeZone: "Europe/Istanbul",
+//               hour: "2-digit",
+//               minute: "2-digit",
+//             })
+//           : "Geçersiz zaman";
+
+//         const descElement = document.querySelector("#desc");
+//         descElement.innerHTML = `<div>${data.weather[0].description}</div>`;
+
+//         let icon = document.querySelector(".weather-icon");
+//         const forecast = data.weather[0];
+//         icon.src = `https://openweathermap.org/img/wn/${forecast.icon}@2x.png`;
+
+//         more_info.innerHTML = `
+//           <div class="weather-item">Hissedilen <span>${Math.round(
+//             feels_like
+//           )}°C</span></div>
+//           <div class="weather-item">Ortalama Nem <span>${Math.round(
+//             humidity
+//           )}%</span></div>
+//           <div class="weather-item">Gün Doğumu <span>${sunriseTime}</span></div>
+//           <div class="weather-item">Gün Batımı <span>${sunsetTime}</span></div>
+//           <div class="weather-item">En yüksek sıcaklık <span>${Math.round(
+//             temp_max
+//           )}°C</span></div>
+//           <div class="weather-item">En düşük sıcaklık <span>${Math.round(
+//             temp_min
+//           )}°C</span></div>
+//         `;
+//       } else {
+//         temp.innerHTML = "Sıcaklık bilgisi alınamadı.";
+//       }
+//     })
+//     .catch((err) => {
+//       temp.innerHTML = "Hava durumu verileri alınamadı.";
+//       console.error(err);
+//     });
+// }
+
+// function error(err) {
+//   console.error(err);
+//   temp.innerHTML = "Konum alınamadı.";
+// }
+
+// !
+
+// function showWeatherData(data) {
+//   const humidity = data.main.humidity;
+//   const feels_like = data.main.feels_like;
+//   const temp_max = data.main.temp_max;
+//   const temp_min = data.main.temp_min;
+
+//   const sunriseTimestamp = data.sys.sunrise;
+//   const sunsetTimestamp = data.sys.sunset;
+
+//   const sunriseTime = sunriseTimestamp
+//     ? new Date(sunriseTimestamp * 1000).toLocaleTimeString("tr-TR", {
+//         timeZone: "Europe/Istanbul",
+//         hour: "2-digit",
+//         minute: "2-digit",
+//       })
+//     : "Geçersiz zaman";
+
+//   const sunsetTime = sunsetTimestamp
+//     ? new Date(sunsetTimestamp * 1000).toLocaleTimeString("tr-TR", {
+//         timeZone: "Europe/Istanbul",
+//         hour: "2-digit",
+//         minute: "2-digit",
+//       })
+//     : "Geçersiz zaman";
+
+//   const descElement = document.querySelector("#desc");
+//   descElement.innerHTML = `<div>${data.weather[0].description}</div>`;
+
+//   more_info.innerHTML = `
+//         <div class="weather-item">Hissedilen <span>${Math.round(
+//           feels_like
+//         )}°C</span></div>
+//         <div class="weather-item">Ortalama Nem <span>${Math.round(
+//           humidity
+//         )}%</span></div>
+//         <div class="weather-item">Gün Doğumu <span>${sunriseTime}</span></div>
+//         <div class="weather-item">Gün Batımı <span>${sunsetTime}</span></div>
+//         <div class="weather-item">En yüksek sıcaklık <span>${Math.round(
+//           temp_max
+//         )}°C</span></div>
+//         <div class="weather-item">En düşük sıcaklık <span>${Math.round(
+//           temp_min
+//         )}°C</span></div>
+//     `;
+// }
+
+
+
+
+
+
+
+
+
 const timeElement = document.getElementById("time");
 const dateElement = document.getElementById("date");
 const cityElement = document.getElementById("city");
 const tempElement = document.getElementById("temp");
 const descElement = document.getElementById("desc");
 const more_info = document.getElementById("more_info");
-const info = document.getElementById("information");
+const input = document.getElementById("searchBar");
+const searchList = document.getElementById("search-list");
+let currentIndex = -1;
 
-// const cityName = "Istanbul";
-const key = `6a4d76c560f8c7925b99f1b3acb1c689`;
-const url = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${key}&lang=tr`;
-console.log(`Fetching weather for: ${url}`);
+const key = '6a4d76c560f8c7925b99f1b3acb1c689';
 
-// const key = `6a4d76c560f8c7925b99f1b3acb1c689`;
-// const url =
-//   "https://api.openweathermap.org/data/2.5/weather?q=İstanbul&appid=6a4d76c560f8c7925b99f1b3acb1c689&lang=tr";
-
-fetch(url)
-  .then((response) => response.json())
-  .then((data) => {
-    console.log(data);
-  })
-  .catch((error) => console.error("Error:", error));
-
-const setQuery = (e) => {
-  if (e.key === "Enter") getResult(searchBar.value);
-};
-
-const getResult = (cityName) => {
-  let query = `${url}weather?q=${cityName}&appid=${key}&units=metric&lang=tr`;
-  fetch(query)
-    .then((weather) => {
-      if (!weather.ok) throw new Error("Şehir bulunamadı");
-      return weather.json();
+// Hava durumu bilgilerini al
+const getWeather = (cityName) => {
+  const url = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${key}&units=metric&lang=tr`;
+  
+  fetch(url)
+    .then(response => {
+      if (!response.ok) throw new Error("Şehir bulunamadı");
+      return response.json();
     })
     .then(displayResult)
-    .catch((error) => {
+    .catch(error => {
       console.error(error);
       alert(error.message);
     });
 };
 
 const displayResult = (result) => {
-  cityElement.innerText = `${result.name}, ${result.sys.country}   Hava Durumu`;
+  cityElement.innerText = `${result.name}, ${result.sys.country} Hava Durumu`; // Ülke kısaltması eklendi
   tempElement.innerText = `${Math.round(result.main.temp)}°C`;
-
-  const descElement = document.querySelector("#desc");
   descElement.innerText = result.weather[0].description;
-
-  let icon = document.querySelector(".weather-icon");
-  const forecast = result.weather[0];
-  icon.src = `https://openweathermap.org/img/wn/${forecast.icon}@2x.png`;
-
+  document.querySelector(".weather-icon").src = `https://openweathermap.org/img/wn/${result.weather[0].icon}@2x.png`;
   showWeatherData(result);
 };
 
-const searchBar = document.getElementById("searchBar");
-searchBar.addEventListener("keypress", setQuery);
 
-const monthsOfYear = [
-  "Ocak",
-  "Şubat",
-  "Mart",
-  "Nisan",
-  "Mayıs",
-  "Haziran",
-  "Temmuz",
-  "Ağustos",
-  "Eylül",
-  "Ekim",
-  "Kasım",
-  "Aralık",
-];
+// Hava durumu ile ilgili daha fazla bilgi
+const showWeatherData = (data) => {
+  const { humidity, feels_like, temp_max, temp_min } = data.main;
+  const sunriseTime = new Date(data.sys.sunrise * 1000).toLocaleTimeString("tr-TR", { timeZone: "Europe/Istanbul", hour: "2-digit", minute: "2-digit" });
+  const sunsetTime = new Date(data.sys.sunset * 1000).toLocaleTimeString("tr-TR", { timeZone: "Europe/Istanbul", hour: "2-digit", minute: "2-digit" });
 
-const daysOfWeek = [
-  "Pazar",
-  "Pazartesi",
-  "Salı",
-  "Çarşamba",
-  "Perşembe",
-  "Cuma",
-  "Cumartesi",
-];
+  more_info.innerHTML = `
+    <div class="weather-item">Hissedilen <span>${Math.round(feels_like)}°C</span></div>
+    <div class="weather-item">Ortalama Nem <span>${Math.round(humidity)}%</span></div>
+    <div class="weather-item">Gün Doğumu <span>${sunriseTime}</span></div>
+    <div class="weather-item">Gün Batımı <span>${sunsetTime}</span></div>
+    <div class="weather-item">En yüksek sıcaklık <span>${Math.round(temp_max)}°C</span></div>
+    <div class="weather-item">En düşük sıcaklık <span>${Math.round(temp_min)}°C</span></div>
+  `;
+};
 
+// Şehir arama ve seçim
+fetch('https://raw.githubusercontent.com/lutangar/cities.json/master/cities.json')
+  .then(response => {
+    if (!response.ok) throw new Error('Ağ isteği başarısız');
+    return response.json();
+  })
+  .then(data => {
+    input.addEventListener("input", function () {
+      const query = this.value.trim();
+      searchList.innerHTML = "";
+      currentIndex = -1;
+
+      if (query) {
+        const results = data.filter(city => city.name.toLowerCase().startsWith(query.toLowerCase())).slice(0, 5);
+        results.forEach((city, index) => {
+          const listItem = document.createElement("li");
+          listItem.textContent = `${city.name}, ${city.country}`;
+          listItem.onclick = () => selectCity(city.name);
+          listItem.onmouseover = () => currentIndex = index;
+          searchList.appendChild(listItem);
+        });
+        searchList.style.display = results.length > 0 ? "block" : "none";
+      } else {
+        searchList.style.display = "none"; 
+      }
+    });
+
+    input.addEventListener("keydown", function (event) {
+      const items = searchList.getElementsByTagName("li");
+      if (event.key === "ArrowDown") {
+        currentIndex = (currentIndex + 1) % items.length;
+      } else if (event.key === "ArrowUp") {
+        currentIndex = (currentIndex - 1 + items.length) % items.length;
+      } else if (event.key === "Enter" && currentIndex > -1) {
+        selectCity(items[currentIndex].textContent.split(",")[0]);
+      }
+      updateSelection(items);
+    });
+
+    function updateSelection(items) {
+      Array.from(items).forEach((item, index) => {
+        item.className = index === currentIndex ? "active" : "";
+      });
+    }
+
+    function selectCity(cityName) {
+      input.value = cityName;
+      searchList.innerHTML = "";
+      currentIndex = -1;
+      getWeather(cityName);
+    }
+  })
+  .catch(error => console.error('Bir hata oluştu:', error));
+
+// Saat ve tarih bilgilerini güncelle
 setInterval(() => {
   const time = new Date();
-  const month = monthsOfYear[time.getMonth()];
-  const date = time.getDate();
-  const day = daysOfWeek[time.getDay()];
-  const hour = time.getHours();
-  const minutes = time.getMinutes();
-
-  timeElement.innerHTML = `${hour < 10 ? "0" + hour : hour}:${
-    minutes < 10 ? "0" + minutes : minutes
-  }`;
-  dateElement.innerHTML = `${day}, ${date} ${month}`;
+  const months = ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"];
+  const days = ["Pazar", "Pazartesi", "Salı", "Çarşamba", "Perşembe", "Cuma", "Cumartesi"];
+  timeElement.innerHTML = `${time.getHours().toString().padStart(2, '0')}:${time.getMinutes().toString().padStart(2, '0')}`;
+  dateElement.innerHTML = `${days[time.getDay()]}, ${time.getDate()} ${months[time.getMonth()]}`;
 }, 500);
 
-// !
-
+// Konum bilgisi al
 if (navigator.geolocation) {
   navigator.geolocation.getCurrentPosition(success, error);
 } else {
-  temp.innerHTML = "Geolocation desteği yok.";
+  tempElement.innerHTML = "Geolocation desteği yok.";
 }
 
 function success(position) {
-  const lat = position.coords.latitude;
-  const lon = position.coords.longitude;
-
-  fetch(
-    `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${key}&units=metric`
-  )
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error("Ağ yanıtı hatalı.");
-      }
-      return response.json();
-    })
-    .then((data) => {
-      console.log(data);
-      if (data.main && data.main.temp) {
-        temp.innerHTML = ` ${Math.round(data.main.temp)} °C`;
-
-        const humidity = data.main.humidity;
-        const feels_like = data.main.feels_like;
-        const temp_max = data.main.temp_max;
-        const temp_min = data.main.temp_min;
-
-        // descElement.innerHTML = `<div>${data.weather[0].description}</div>`;
-
-        const sunriseTimestamp = data.sys.sunrise;
-        const sunsetTimestamp = data.sys.sunset;
-
-        const sunriseTime = sunriseTimestamp
-          ? new Date(sunriseTimestamp * 1000).toLocaleTimeString("tr-TR", {
-              timeZone: "Europe/Istanbul",
-              hour: "2-digit",
-              minute: "2-digit",
-            })
-          : "Geçersiz zaman";
-
-        const sunsetTime = sunsetTimestamp
-          ? new Date(sunsetTimestamp * 1000).toLocaleTimeString("tr-TR", {
-              timeZone: "Europe/Istanbul",
-              hour: "2-digit",
-              minute: "2-digit",
-            })
-          : "Geçersiz zaman";
-
-        const descElement = document.querySelector("#desc");
-        descElement.innerHTML = `<div>${data.weather[0].description}</div>`;
-
-        let icon = document.querySelector(".weather-icon");
-        const forecast = data.weather[0];
-        icon.src = `https://openweathermap.org/img/wn/${forecast.icon}@2x.png`;
-
-        more_info.innerHTML = `
-          <div class="weather-item">Hissedilen <span>${Math.round(
-            feels_like
-          )}°C</span></div>
-          <div class="weather-item">Ortalama Nem <span>${Math.round(
-            humidity
-          )}%</span></div>
-          <div class="weather-item">Gün Doğumu <span>${sunriseTime}</span></div>
-          <div class="weather-item">Gün Batımı <span>${sunsetTime}</span></div>
-          <div class="weather-item">En yüksek sıcaklık <span>${Math.round(
-            temp_max
-          )}°C</span></div>
-          <div class="weather-item">En düşük sıcaklık <span>${Math.round(
-            temp_min
-          )}°C</span></div>
-        `;
-      } else {
-        temp.innerHTML = "Sıcaklık bilgisi alınamadı.";
-      }
-    })
-    .catch((err) => {
-      temp.innerHTML = "Hava durumu verileri alınamadı.";
+  const { latitude: lat, longitude: lon } = position.coords;
+  fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${key}&units=metric`)
+    .then(response => response.json())
+    .then(data => displayResult(data))
+    .catch(err => {
+      tempElement.innerHTML = "Hava durumu verileri alınamadı.";
       console.error(err);
     });
 }
 
-function error(err) {
-  console.error(err);
-  temp.innerHTML = "Konum alınamadı.";
+function error() {
+  tempElement.innerHTML = "Konum alınamadı.";
 }
 
-// !
 
-function showWeatherData(data) {
-  const humidity = data.main.humidity;
-  const feels_like = data.main.feels_like;
-  const temp_max = data.main.temp_max;
-  const temp_min = data.main.temp_min;
 
-  const sunriseTimestamp = data.sys.sunrise;
-  const sunsetTimestamp = data.sys.sunset;
 
-  const sunriseTime = sunriseTimestamp
-    ? new Date(sunriseTimestamp * 1000).toLocaleTimeString("tr-TR", {
-        timeZone: "Europe/Istanbul",
-        hour: "2-digit",
-        minute: "2-digit",
-      })
-    : "Geçersiz zaman";
-
-  const sunsetTime = sunsetTimestamp
-    ? new Date(sunsetTimestamp * 1000).toLocaleTimeString("tr-TR", {
-        timeZone: "Europe/Istanbul",
-        hour: "2-digit",
-        minute: "2-digit",
-      })
-    : "Geçersiz zaman";
-
-  const descElement = document.querySelector("#desc");
-  descElement.innerHTML = `<div>${data.weather[0].description}</div>`;
-
-  more_info.innerHTML = `
-        <div class="weather-item">Hissedilen <span>${Math.round(
-          feels_like
-        )}°C</span></div>
-        <div class="weather-item">Ortalama Nem <span>${Math.round(
-          humidity
-        )}%</span></div>
-        <div class="weather-item">Gün Doğumu <span>${sunriseTime}</span></div>
-        <div class="weather-item">Gün Batımı <span>${sunsetTime}</span></div>
-        <div class="weather-item">En yüksek sıcaklık <span>${Math.round(
-          temp_max
-        )}°C</span></div>
-        <div class="weather-item">En düşük sıcaklık <span>${Math.round(
-          temp_min
-        )}°C</span></div>
-    `;
-}
 //  const cities = [
 //   "Adana",
 //   "Adıyaman",
@@ -418,79 +568,79 @@ function showWeatherData(data) {
 
 
 
-const input = document.getElementById("searchBar");
-const searchList = document.getElementById("search-list");
-let currentIndex = -1; 
+// const input = document.getElementById("searchBar");
+// const searchList = document.getElementById("search-list");
+// let currentIndex = -1; 
 
 
-fetch('https://raw.githubusercontent.com/lutangar/cities.json/master/cities.json')
-  .then(response => {
-    if (!response.ok) {
-      throw new Error('Ağ isteği başarısız: ' + response.statusText);
-    }
-    return response.json();
-  })
-  .then(data => {
-    input.addEventListener("input", function () {
-      const query = this.value.trim();
-      searchList.innerHTML = ""; 
-      currentIndex = -1; 
+// fetch('https://raw.githubusercontent.com/lutangar/cities.json/master/cities.json')
+//   .then(response => {
+//     if (!response.ok) {
+//       throw new Error('Ağ isteği başarısız: ' + response.statusText);
+//     }
+//     return response.json();
+//   })
+//   .then(data => {
+//     input.addEventListener("input", function () {
+//       const query = this.value.trim();
+//       searchList.innerHTML = ""; 
+//       currentIndex = -1; 
 
-      if (query.length > 0) {
+//       if (query.length > 0) {
         
-        const results = data.filter(city => 
-          city.name.toLowerCase().startsWith(query.toLowerCase())
-        ).slice(0, 5);
+//         const results = data.filter(city => 
+//           city.name.toLowerCase().startsWith(query.toLowerCase())
+//         ).slice(0, 5);
 
-        results.forEach((city, index) => {
-          const listItem = document.createElement("li");
-          listItem.textContent = `${city.name}, ${city.country}`;
-          listItem.onclick = () => selectCity(city.name);
+//         results.forEach((city, index) => {
+//           const listItem = document.createElement("li");
+//           listItem.textContent = `${city.name}, ${city.country}`;
+//           listItem.onclick = () => selectCity(city.name);
           
           
-          listItem.onmouseover = () => currentIndex = index;
-          listItem.className = index === currentIndex ? "active" : "";
-          searchList.appendChild(listItem);
-        });
+//           listItem.onmouseover = () => currentIndex = index;
+//           listItem.className = index === currentIndex ? "active" : "";
+//           searchList.appendChild(listItem);
+//         });
 
         
-        searchList.style.display = results.length > 0 ? "block" : "none";
-      } else {
-        searchList.style.display = "none"; 
-      }
-    });
+//         searchList.style.display = results.length > 0 ? "block" : "none";
+//       } else {
+//         searchList.style.display = "none"; 
+//       }
+//     });
 
     
-    input.addEventListener("keydown", function (event) {
-      const items = searchList.getElementsByTagName("li");
-      if (event.key === "ArrowDown") {
-        currentIndex = (currentIndex + 1) % items.length; 
-        updateSelection(items);
-      } else if (event.key === "ArrowUp") {
-        currentIndex = (currentIndex - 1 + items.length) % items.length; 
-        updateSelection(items);
-      } else if (event.key === "Enter") {
-        if (currentIndex > -1 && items.length > 0) {
-          selectCity(items[currentIndex].textContent.split(",")[0]); 
-        }
-      }
-    });
+//     input.addEventListener("keydown", function (event) {
+//       const items = searchList.getElementsByTagName("li");
+//       if (event.key === "ArrowDown") {
+//         currentIndex = (currentIndex + 1) % items.length; 
+//         updateSelection(items);
+//       } else if (event.key === "ArrowUp") {
+//         currentIndex = (currentIndex - 1 + items.length) % items.length; 
+//         updateSelection(items);
+//       } else if (event.key === "Enter") {
+//         if (currentIndex > -1 && items.length > 0) {
+//           selectCity(items[currentIndex].textContent.split(",")[0]); 
+//         }
+//       }
+//     });
 
-    function updateSelection(items) {
-      for (let i = 0; i < items.length; i++) {
-        items[i].className = i === currentIndex ? "active" : ""; 
-      }
-    }
+//     function updateSelection(items) {
+//       for (let i = 0; i < items.length; i++) {
+//         items[i].className = i === currentIndex ? "active" : ""; 
+//       }
+//     }
 
-    function selectCity(cityName) {
-      input.value = cityName; 
-      searchList.innerHTML = "";
-      currentIndex = -1; 
-    }
-  })
-  .catch(error => {
-    console.error('Bir hata oluştu:', error);
-  });
+//     function selectCity(cityName) {
+//       input.value = cityName; 
+//       searchList.innerHTML = "";
+//       currentIndex = -1; 
+//     }
+//   })
+//   .catch(error => {
+//     console.error('Bir hata oluştu:', error);
+//   });
 
 
 
