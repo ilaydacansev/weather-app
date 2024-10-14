@@ -12,297 +12,7 @@ window.onclick = function (event) {
   }
 };
 
-// const url = "https://api.openweathermap.org/data/2.5/";
 
-// const key = "6a4d76c560f8c7925b99f1b3acb1c689";
-
-// const setQuery = (e) => {
-//   if (e.keyCode == "13") getResult(searchBar.value);
-// };
-
-// const getResult = (cityName) => {
-//   let query = `${url}weather?q=${cityName}&appid=${key}&units=metric&lang=tr`;
-//   fetch(query)
-//     .then((weather) => {
-//       return weather.json();
-//     })
-//     .then(displayResult);
-// };
-
-// const displayResult = (result) => {
-//   let city = document.querySelector(".city");
-//   city.innerText = `${result.name}, ${result.sys.country}   Hava Durumu`;
-
-//   let temp = document.querySelector(".temp");
-//   temp.innerText = `${Math.round(result.main.temp)}°C`;
-
-//   let desc = document.querySelector(".desc");
-//   desc.innerText = result.weather[0].description;
-
-//   let minmax = document.querySelector(".minmax");
-//   minmax.innerText = `En yüksek sıcaklık ${Math.round(
-//     result.main.temp_min
-//   )}°C    ⚫︎    En düşük sıcaklık ${Math.round(result.main.temp_max)}°C`;
-
-//   let feel = document.querySelector(".feel");
-//   feel.innerText = `Hissedilen ${Math.round(result.main.feels_like)}°C`;
-
-//   let time = document.querySelector(".time");
-//   time.innerText = `Bugün: ${result.weather[0].description}`;
-
-//   let icon = document.querySelector(".weather-icon");
-//   const weatherIconCode = result.weather[0].icon;
-//   icon.src = `http://openweathermap.org/img/wn/${weatherIconCode}@2x.png`;
-// };
-
-// const searchBar = document.getElementById("searchBar");
-// searchBar.addEventListener("keypress", setQuery);
-
-// function setActive(element) {
-//   const guns = document.querySelectorAll(".day");
-//   guns.forEach((day) => {
-//     day.classList.remove("active"); // Diğer günlerden 'active' sınıfını kaldır
-//   });
-//   element.classList.add("active"); // Tıklanan elemana 'active' sınıfını ekle
-// }
-
-// !
-
-// const timeElement = document.getElementById("time");
-// const dateElement = document.getElementById("date");
-// const cityElement = document.getElementById("city");
-// const tempElement = document.getElementById("temp");
-// const descElement = document.getElementById("desc");
-// const more_info = document.getElementById("more_info");
-// const info = document.getElementById("information");
-
-// const cityName = "Istanbul";
-// const key = `6a4d76c560f8c7925b99f1b3acb1c689`;
-// const url = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${key}&lang=tr`;
-// console.log(`Fetching weather for: ${url}`);
-
-// const key = `6a4d76c560f8c7925b99f1b3acb1c689`;
-// const url =
-//   "https://api.openweathermap.org/data/2.5/weather?q=İstanbul&appid=6a4d76c560f8c7925b99f1b3acb1c689&lang=tr";
-
-// fetch(url)
-//   .then((response) => response.json())
-//   .then((data) => {
-//     console.log(data);
-//   })
-//   .catch((error) => console.error("Error:", error));
-
-// const setQuery = (e) => {
-//   if (e.key === "Enter") getResult(searchBar.value);
-// };
-
-// const getResult = (cityName) => {
-//   let query = `${url}weather?q=${cityName}&appid=${key}&units=metric&lang=tr`;
-//   fetch(query)
-//     .then((weather) => {
-//       if (!weather.ok) throw new Error("Şehir bulunamadı");
-//       return weather.json();
-//     })
-//     .then(displayResult)
-//     .catch((error) => {
-//       console.error(error);
-//       alert(error.message);
-//     });
-// };
-
-// const displayResult = (result) => {
-//   cityElement.innerText = `${result.name}, ${result.sys.country}   Hava Durumu`;
-//   tempElement.innerText = `${Math.round(result.main.temp)}°C`;
-
-//   const descElement = document.querySelector("#desc");
-//   descElement.innerText = result.weather[0].description;
-
-//   let icon = document.querySelector(".weather-icon");
-//   const forecast = result.weather[0];
-//   icon.src = `https://openweathermap.org/img/wn/${forecast.icon}@2x.png`;
-
-//   showWeatherData(result);
-// };
-
-// const searchBar = document.getElementById("searchBar");
-// searchBar.addEventListener("keypress", setQuery);
-
-// const monthsOfYear = [
-//   "Ocak",
-//   "Şubat",
-//   "Mart",
-//   "Nisan",
-//   "Mayıs",
-//   "Haziran",
-//   "Temmuz",
-//   "Ağustos",
-//   "Eylül",
-//   "Ekim",
-//   "Kasım",
-//   "Aralık",
-// ];
-
-// const daysOfWeek = [
-//   "Pazar",
-//   "Pazartesi",
-//   "Salı",
-//   "Çarşamba",
-//   "Perşembe",
-//   "Cuma",
-//   "Cumartesi",
-// ];
-
-// setInterval(() => {
-//   const time = new Date();
-//   const month = monthsOfYear[time.getMonth()];
-//   const date = time.getDate();
-//   const day = daysOfWeek[time.getDay()];
-//   const hour = time.getHours();
-//   const minutes = time.getMinutes();
-
-//   timeElement.innerHTML = `${hour < 10 ? "0" + hour : hour}:${
-//     minutes < 10 ? "0" + minutes : minutes
-//   }`;
-//   dateElement.innerHTML = `${day}, ${date} ${month}`;
-// }, 500);
-
-// !
-
-// if (navigator.geolocation) {
-//   navigator.geolocation.getCurrentPosition(success, error);
-// } else {
-//   temp.innerHTML = "Geolocation desteği yok.";
-// }
-
-// function success(position) {
-//   const lat = position.coords.latitude;
-//   const lon = position.coords.longitude;
-
-//   fetch(
-//     `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${key}&units=metric`
-//   )
-//     .then((response) => {
-//       if (!response.ok) {
-//         throw new Error("Ağ yanıtı hatalı.");
-//       }
-//       return response.json();
-//     })
-//     .then((data) => {
-//       console.log(data);
-//       if (data.main && data.main.temp) {
-//         temp.innerHTML = ` ${Math.round(data.main.temp)} °C`;
-
-//         const humidity = data.main.humidity;
-//         const feels_like = data.main.feels_like;
-//         const temp_max = data.main.temp_max;
-//         const temp_min = data.main.temp_min;
-
-//         descElement.innerHTML = `<div>${data.weather[0].description}</div>`;
-
-//         const sunriseTimestamp = data.sys.sunrise;
-//         const sunsetTimestamp = data.sys.sunset;
-
-//         const sunriseTime = sunriseTimestamp
-//           ? new Date(sunriseTimestamp * 1000).toLocaleTimeString("tr-TR", {
-//               timeZone: "Europe/Istanbul",
-//               hour: "2-digit",
-//               minute: "2-digit",
-//             })
-//           : "Geçersiz zaman";
-
-//         const sunsetTime = sunsetTimestamp
-//           ? new Date(sunsetTimestamp * 1000).toLocaleTimeString("tr-TR", {
-//               timeZone: "Europe/Istanbul",
-//               hour: "2-digit",
-//               minute: "2-digit",
-//             })
-//           : "Geçersiz zaman";
-
-//         const descElement = document.querySelector("#desc");
-//         descElement.innerHTML = `<div>${data.weather[0].description}</div>`;
-
-//         let icon = document.querySelector(".weather-icon");
-//         const forecast = data.weather[0];
-//         icon.src = `https://openweathermap.org/img/wn/${forecast.icon}@2x.png`;
-
-//         more_info.innerHTML = `
-//           <div class="weather-item">Hissedilen <span>${Math.round(
-//             feels_like
-//           )}°C</span></div>
-//           <div class="weather-item">Ortalama Nem <span>${Math.round(
-//             humidity
-//           )}%</span></div>
-//           <div class="weather-item">Gün Doğumu <span>${sunriseTime}</span></div>
-//           <div class="weather-item">Gün Batımı <span>${sunsetTime}</span></div>
-//           <div class="weather-item">En yüksek sıcaklık <span>${Math.round(
-//             temp_max
-//           )}°C</span></div>
-//           <div class="weather-item">En düşük sıcaklık <span>${Math.round(
-//             temp_min
-//           )}°C</span></div>
-//         `;
-//       } else {
-//         temp.innerHTML = "Sıcaklık bilgisi alınamadı.";
-//       }
-//     })
-//     .catch((err) => {
-//       temp.innerHTML = "Hava durumu verileri alınamadı.";
-//       console.error(err);
-//     });
-// }
-
-// function error(err) {
-//   console.error(err);
-//   temp.innerHTML = "Konum alınamadı.";
-// }
-
-// !
-
-// function showWeatherData(data) {
-//   const humidity = data.main.humidity;
-//   const feels_like = data.main.feels_like;
-//   const temp_max = data.main.temp_max;
-//   const temp_min = data.main.temp_min;
-
-//   const sunriseTimestamp = data.sys.sunrise;
-//   const sunsetTimestamp = data.sys.sunset;
-
-//   const sunriseTime = sunriseTimestamp
-//     ? new Date(sunriseTimestamp * 1000).toLocaleTimeString("tr-TR", {
-//         timeZone: "Europe/Istanbul",
-//         hour: "2-digit",
-//         minute: "2-digit",
-//       })
-//     : "Geçersiz zaman";
-
-//   const sunsetTime = sunsetTimestamp
-//     ? new Date(sunsetTimestamp * 1000).toLocaleTimeString("tr-TR", {
-//         timeZone: "Europe/Istanbul",
-//         hour: "2-digit",
-//         minute: "2-digit",
-//       })
-//     : "Geçersiz zaman";
-
-//   const descElement = document.querySelector("#desc");
-//   descElement.innerHTML = `<div>${data.weather[0].description}</div>`;
-
-//   more_info.innerHTML = `
-//         <div class="weather-item">Hissedilen <span>${Math.round(
-//           feels_like
-//         )}°C</span></div>
-//         <div class="weather-item">Ortalama Nem <span>${Math.round(
-//           humidity
-//         )}%</span></div>
-//         <div class="weather-item">Gün Doğumu <span>${sunriseTime}</span></div>
-//         <div class="weather-item">Gün Batımı <span>${sunsetTime}</span></div>
-//         <div class="weather-item">En yüksek sıcaklık <span>${Math.round(
-//           temp_max
-//         )}°C</span></div>
-//         <div class="weather-item">En düşük sıcaklık <span>${Math.round(
-//           temp_min
-//         )}°C</span></div>
-//     `;
-// }
 
 const timeElement = document.getElementById("time");
 const dateElement = document.getElementById("date");
@@ -363,24 +73,21 @@ const showWeatherData = (forecast) => {
     return;
   }
 
-  
   const firstDay = forecast.list[0];
   const initialDate = new Date(firstDay.dt * 1000);
   const initialIconUrl = `https://openweathermap.org/img/wn/${firstDay.weather[0].icon}@2x.png`;
 
   displayInitialWeather(initialDate, initialIconUrl, Math.round(firstDay.main.temp), firstDay.weather[0].description);
 
- 
   day_info.innerHTML = ``; 
   for (let i = 0; i < 5; i++) {
     let date = new Date(forecast.list[i * 8].dt * 1000);
     if (forecast.list[i * 8] && forecast.list[i * 8].weather) {
       const iconUrl = `https://openweathermap.org/img/wn/${forecast.list[i * 8].weather[0].icon}@2x.png`;
-      const temp = Math.round(forecast.list[i * 8].main.temp + (Math.random() * 10 - 5));
-      
+      const temp = Math.round(forecast.list[i * 8].main.temp);
       
       day_info.innerHTML += `
-          <div class="day" onclick="setActive(this, '${date.getDate()} ${months[date.getMonth()]}, ${daysOfWeek[date.getDay()]}', '${time}', '${temp}°C', '${forecast.list[i * 8].weather[0].description}', '${iconUrl}', '${forecast.list[i * 8].main.feels_like}', '${forecast.list[i * 8].main.humidity}', '${new Date(forecast.city.sunrise * 1000).toLocaleTimeString("tr-TR")}', '${new Date(forecast.city.sunset * 1000).toLocaleTimeString("tr-TR")}', '${Math.round(forecast.list[i * 8].main.temp_max)}°C', '${Math.round(forecast.list[i * 8].main.temp_min)}°C')">
+          <div class="day" onclick="setActive(this, '${date.getDate()} ${months[date.getMonth()]}, ${daysOfWeek[date.getDay()]}', '${timeElement.innerHTML}', '${temp}°C', '${forecast.list[i * 8].weather[0].description}', '${iconUrl}', '${Math.round(forecast.list[i * 8].main.feels_like)}', '${Math.round(forecast.list[i * 8].main.humidity)}', '${new Date(forecast.city.sunrise * 1000).toLocaleTimeString("tr-TR")}', '${new Date(forecast.city.sunset * 1000).toLocaleTimeString("tr-TR")}', '${Math.round(forecast.list[i * 8].main.temp_max)}°C', '${Math.round(forecast.list[i * 8].main.temp_min)}°C')">
               <div class="dday">${date.getDate()} ${months[date.getMonth()]}, ${daysOfWeek[date.getDay()]}</div>
               <img class="img-day" src="${iconUrl}" alt="weather icon" />
               <span>${temp} °C</span>
@@ -394,7 +101,7 @@ const showWeatherData = (forecast) => {
 
 function displayInitialWeather(date, iconUrl, temp, desc) {
   document.getElementById('date').innerText = `${date.getDate()} ${months[date.getMonth()]}`;
-  document.getElementById('time').innerText = `${time}`; 
+  document.getElementById('time').innerText = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}); 
   document.getElementById('temp').innerText = `${temp}°C`;
   document.getElementById('desc').innerText = desc;
   document.querySelector('.weather-icon').src = iconUrl;
@@ -485,11 +192,9 @@ function success(position) {
 
 function error() {
   tempElement.innerHTML = "Konum alınamadı.";
-  
 }
 
 function setActive(element, date, time, temp, desc, icon, feels_like, humidity, sunrise, sunset, temp_max, temp_min) {
-  
   if (date && time && temp && desc && icon) {
     const content = document.getElementById('content'); 
     content.innerHTML = `
@@ -502,7 +207,6 @@ function setActive(element, date, time, temp, desc, icon, feels_like, humidity, 
       </div>
     `;
 
-   
     more_info.innerHTML = `
       <div class="weather-item">Hissedilen <span>${Math.round(feels_like)}°C</span></div>
       <div class="weather-item">Ortalama Nem <span>${Math.round(humidity)}%</span></div>
@@ -513,7 +217,6 @@ function setActive(element, date, time, temp, desc, icon, feels_like, humidity, 
     `;
   }
 
-  
   const days = document.querySelectorAll('.day');
   days.forEach(day => day.classList.remove('active'));
   element.classList.add('active');
