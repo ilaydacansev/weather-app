@@ -85,10 +85,13 @@ const showWeatherData = (forecast) => {
     if (forecast.list[i * 8] && forecast.list[i * 8].weather) {
       const iconUrl = `https://openweathermap.org/img/wn/${forecast.list[i * 8].weather[0].icon}@2x.png`;
       const temp = Math.round(forecast.list[i * 8].main.temp);
+      const today = new Date();
+const isToday = (date) => date.getDate() === today.getDate() && date.getMonth() === today.getMonth() && date.getFullYear() === today.getFullYear();
+
       
       day_info.innerHTML += `
-          <div class="day" onclick="setActive(this, '${date.getDate()} ${months[date.getMonth()]}, ${daysOfWeek[date.getDay()]}', '${timeElement.innerHTML}', '${temp}°C', '${forecast.list[i * 8].weather[0].description}', '${iconUrl}', '${Math.round(forecast.list[i * 8].main.feels_like)}', '${Math.round(forecast.list[i * 8].main.humidity)}', '${new Date(forecast.city.sunrise * 1000).toLocaleTimeString("tr-TR")}', '${new Date(forecast.city.sunset * 1000).toLocaleTimeString("tr-TR")}', '${Math.round(forecast.list[i * 8].main.temp_max)}°C', '${Math.round(forecast.list[i * 8].main.temp_min)}°C')">
-              <div class="dday">${date.getDate()} ${months[date.getMonth()]}, ${daysOfWeek[date.getDay()]}</div>
+          <div id = "day" class="day ${isToday(date) ? 'active' : ''}" onclick="setActive(this, '${isToday(date) ? 'Bugün' : date.getDate() + ' ' + months[date.getMonth()]}', '${timeElement.innerHTML}', '${temp}°C', '${forecast.list[i * 8].weather[0].description}', '${iconUrl}', '${Math.round(forecast.list[i * 8].main.feels_like)}', '${Math.round(forecast.list[i * 8].main.humidity)}', '${new Date(forecast.city.sunrise * 1000).toLocaleTimeString("tr-TR")}', '${new Date(forecast.city.sunset * 1000).toLocaleTimeString("tr-TR")}', '${Math.round(forecast.list[i * 8].main.temp_max)}°C', '${Math.round(forecast.list[i * 8].main.temp_min)}°C')">
+              <div class="dday">${isToday(date) ? 'Bugün' : date.getDate() + ' ' + months[date.getMonth()]}</div>
               <img class="img-day" src="${iconUrl}" alt="weather icon" />
               <span>${temp} °C</span>
           </div>
@@ -98,6 +101,11 @@ const showWeatherData = (forecast) => {
     }
   }
 };
+
+const activeDay = document.querySelector('.day.active');
+if (activeDay) {
+    activeDay.focus();
+}
 
 function displayInitialWeather(date, iconUrl, temp, desc) {
   document.getElementById('date').innerText = `${date.getDate()} ${months[date.getMonth()]}`;
@@ -166,7 +174,7 @@ setInterval(() => {
   const time = new Date();
   timeElement.innerHTML = `${time.getHours().toString().padStart(2, "0")}:${time.getMinutes().toString().padStart(2, "0")}`;
   dateElement.innerHTML = `${daysOfWeek[time.getDay()]}, ${time.getDate()} ${months[time.getMonth()]}`;
-}, 500);
+}, 100);
 
 if (navigator.geolocation) {
   navigator.geolocation.getCurrentPosition(success, error);
@@ -195,6 +203,10 @@ function error() {
 }
 
 function setActive(element, date, time, temp, desc, icon, feels_like, humidity, sunrise, sunset, temp_max, temp_min) {
+  const days = document.querySelectorAll('.day');
+    days.forEach(day => day.classList.remove('active'));
+    element.classList.add('active');
+    element.focus();
   if (date && time && temp && desc && icon) {
     const content = document.getElementById('content'); 
     content.innerHTML = `
@@ -216,13 +228,23 @@ function setActive(element, date, time, temp, desc, icon, feels_like, humidity, 
       <div class="weather-item">En düşük sıcaklık <span>${Math.round(temp_min)}°C</span></div>
     `;
   }
-
-  const days = document.querySelectorAll('.day');
-  days.forEach(day => day.classList.remove('active'));
-  element.classList.add('active');
 }
+  const dayPart = document.querySelectorAll('.day'); 
+  
+  
+  const initialActiveDay = dayPart[0];
+  dayPart.forEach(day => day.classList.remove('active')); 
+  initialActiveDay.classList.add('active'); 
+  initialActiveDay.focus(); 
 
-// 
+  dayPart.forEach(day => {
+      day.addEventListener('click', () => {
+        dayPart.forEach(d => d.classList.remove('active'));
+          day.classList.add('active'); 
+          day.focus(); 
+      });
+  });
+
 
 
 
