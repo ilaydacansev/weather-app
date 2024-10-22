@@ -216,7 +216,7 @@ body {
   top: 45px;
 }
 
-.more-info {
+#more_info {
   display: flex;
   flex-direction: column;
   position: absolute;

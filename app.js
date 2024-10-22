@@ -219,14 +219,16 @@ function setActive(element, date, time, temp, desc, icon, feels_like, humidity, 
       </div>
     `;
 
-    more_info.innerHTML = `
-      <div class="weather-item">Hissedilen <span>${Math.round(feels_like)}°C</span></div>
-      <div class="weather-item">Ortalama Nem <span>${Math.round(humidity)}%</span></div>
-      <div class="weather-item">Gün Doğumu <span>${sunrise}</span></div>
-      <div class="weather-item">Gün Batımı <span>${sunset}</span></div>
-      <div class="weather-item">En yüksek sıcaklık <span>${Math.round(temp_max)}°C</span></div>
-      <div class="weather-item">En düşük sıcaklık <span>${Math.round(temp_min)}°C</span></div>
-    `;
+    const weatherInfo = `
+    <div class="weather-item">Hissedilen <span>${Math.round(feels_like)}°C</span></div>
+    <div class="weather-item">Ortalama Nem <span>${Math.round(humidity)}%</span></div>
+    <div class="weather-item">Gün Doğumu <span>${sunrise}</span></div>
+    <div class="weather-item">Gün Batımı <span>${sunset}</span></div>
+    <div class="weather-item">En yüksek sıcaklık <span>${Math.round(temp_max)}°C</span></div>
+    <div class="weather-item">En düşük sıcaklık <span>${Math.round(temp_min)}°C</span></div>
+  `;
+  
+  more_info.innerHTML = weatherInfo;
   }
 }
   const dayPart = document.querySelectorAll('.day'); 
@@ -247,6 +249,7 @@ function setActive(element, date, time, temp, desc, icon, feels_like, humidity, 
 
 
 
+  
 
 
 
