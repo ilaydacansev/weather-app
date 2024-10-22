@@ -13,7 +13,6 @@ window.onclick = function (event) {
 };
 
 
-
 const timeElement = document.getElementById("time");
 const dateElement = document.getElementById("date");
 const cityElement = document.getElementById("city");
@@ -50,11 +49,17 @@ const getWeather = (cityName) => {
       displayResult(result);
       return fetch(forecastUrl);
     })
-    .then((response) => response.json())
+    .then((response) => {
+      if (!response.ok) throw new Error("Hava durumu tahmini alınamadı");
+      return response.json();
+    })
     .then((data) => showWeatherData(data))
     .catch((error) => {
       console.error(error);
-      alert(error.message);
+      alert(`Hata: ${error.message}`);
+      const errorMessageElement = document.getElementById('error-message');
+      errorMessageElement.innerText = `Bir hata oluştu: ${error.message}`;
+      errorMessageElement.style.display = 'block';
     });
 };
 
@@ -79,33 +84,32 @@ const showWeatherData = (forecast) => {
 
   displayInitialWeather(initialDate, initialIconUrl, Math.round(firstDay.main.temp), firstDay.weather[0].description);
 
-  day_info.innerHTML = ``; 
+  day_info.innerHTML = ''; 
   for (let i = 0; i < 5; i++) {
     let date = new Date(forecast.list[i * 8].dt * 1000);
     if (forecast.list[i * 8] && forecast.list[i * 8].weather) {
       const iconUrl = `https://openweathermap.org/img/wn/${forecast.list[i * 8].weather[0].icon}@2x.png`;
       const temp = Math.round(forecast.list[i * 8].main.temp);
       const today = new Date();
-const isToday = (date) => date.getDate() === today.getDate() && date.getMonth() === today.getMonth() && date.getFullYear() === today.getFullYear();
-
+      const isToday = date.getDate() === today.getDate() && date.getMonth() === today.getMonth() && date.getFullYear() === today.getFullYear();
       
       day_info.innerHTML += `
-          <div id = "day" class="day ${isToday(date) ? 'active' : ''}" onclick="setActive(this, '${isToday(date) ? 'Bugün' : date.getDate() + ' ' + months[date.getMonth()]}', '${timeElement.innerHTML}', '${temp}°C', '${forecast.list[i * 8].weather[0].description}', '${iconUrl}', '${Math.round(forecast.list[i * 8].main.feels_like)}', '${Math.round(forecast.list[i * 8].main.humidity)}', '${new Date(forecast.city.sunrise * 1000).toLocaleTimeString("tr-TR")}', '${new Date(forecast.city.sunset * 1000).toLocaleTimeString("tr-TR")}', '${Math.round(forecast.list[i * 8].main.temp_max)}°C', '${Math.round(forecast.list[i * 8].main.temp_min)}°C')">
-              <div class="dday">${isToday(date) ? 'Bugün' : date.getDate() + ' ' + months[date.getMonth()]}</div>
-              <img class="img-day" src="${iconUrl}" alt="weather icon" />
+          <div id="day" class="day ${isToday ? 'active' : ''}" onclick="setActive(this, '${isToday ? 'Bugün' : date.getDate() + ' ' + months[date.getMonth()]}', '${timeElement.innerHTML}', '${temp}°C', '${forecast.list[i * 8].weather[0].description}', '${iconUrl}', '${Math.round(forecast.list[i * 8].main.feels_like)}', '${Math.round(forecast.list[i * 8].main.humidity)}', '${new Date(forecast.city.sunrise * 1000).toLocaleTimeString("tr-TR")}', '${new Date(forecast.city.sunset * 1000).toLocaleTimeString("tr-TR")}', '${Math.round(forecast.list[i * 8].main.temp_max)}°C', '${Math.round(forecast.list[i * 8].main.temp_min)}°C')">
+              <div class="dday">${isToday ? 'Bugün' : date.getDate() + ' ' + months[date.getMonth()]}</div>
+              <img class="img-day" src="${iconUrl}" alt="hava durumu simgesi" />
               <span>${temp} °C</span>
           </div>
       `;
     } else {
-      console.error("Weather data not available for this index.");
+      console.error("Bu indeks için hava durumu verisi mevcut değil.");
     }
   }
-};
 
-const activeDay = document.querySelector('.day.active');
-if (activeDay) {
-    activeDay.focus();
-}
+  const activeDay = document.querySelector('.day.active');
+  if (activeDay) {
+    activeDay.click();
+  }
+};
 
 function displayInitialWeather(date, iconUrl, temp, desc) {
   document.getElementById('date').innerText = `${date.getDate()} ${months[date.getMonth()]}`;
@@ -176,25 +180,26 @@ setInterval(() => {
   dateElement.innerHTML = `${daysOfWeek[time.getDay()]}, ${time.getDate()} ${months[time.getMonth()]}`;
 }, 100);
 
-if (navigator.geolocation) {
-  navigator.geolocation.getCurrentPosition(success, error);
-} else {
-  tempElement.innerHTML = "Geolocation desteği yok.";
-}
-
 function success(position) {
   const { latitude: lat, longitude: lon } = position.coords;
   fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${key}&units=metric`)
-    .then((response) => response.json())
+    .then((response) => {
+      if (!response.ok) throw new Error("Konum için hava durumu verisi alınamadı");
+      return response.json();
+    })
     .then((data) => {
       displayResult(data);
       return fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${key}&units=metric`);
     })
-    .then((response) => response.json())
+    .then((response) => {
+      if (!response.ok) throw new Error("Konum için hava durumu tahmini alınamadı");
+      return response.json();
+    })
     .then((data) => showWeatherData(data))
     .catch((err) => {
       tempElement.innerHTML = "Hava durumu verileri alınamadı.";
       console.error(err);
+      alert(`Hata: ${err.message}`);
     });
 }
 
@@ -202,13 +207,25 @@ function error() {
   tempElement.innerHTML = "Konum alınamadı.";
 }
 
+if (navigator.geolocation) {
+  navigator.geolocation.getCurrentPosition(success, error);
+} else {
+  tempElement.innerHTML = "Geolocation desteği yok.";
+}
+
 function setActive(element, date, time, temp, desc, icon, feels_like, humidity, sunrise, sunset, temp_max, temp_min) {
   const days = document.querySelectorAll('.day');
-    days.forEach(day => day.classList.remove('active'));
-    element.classList.add('active');
-    element.focus();
-  if (date && time && temp && desc && icon) {
-    const content = document.getElementById('content'); 
+  days.forEach(day => day.classList.remove('active'));
+  element.classList.add('active');
+  element.focus();
+
+  const content = document.getElementById('content'); 
+  const timeElement = document.getElementById('time');
+
+  const isToday = date === 'Bugün';
+  timeElement.style.display = isToday ? 'block' : 'none';
+  
+  if (date && time && temp && desc && icon)  {
     content.innerHTML = `
       <div id="information" class="information w-100">
         <img class="weather-icon text-left" src="${icon}" alt="${desc}" />
@@ -219,35 +236,39 @@ function setActive(element, date, time, temp, desc, icon, feels_like, humidity, 
       </div>
     `;
 
+    function formatTime(timeString) {
+      return timeString.split(':').slice(0, 2).join(':'); 
+    }
+
+    const sunriseFormatted = formatTime(sunrise); 
+    const sunsetFormatted = formatTime(sunset);
+
     const weatherInfo = `
-    <div class="weather-item">Hissedilen <span>${Math.round(feels_like)}°C</span></div>
-    <div class="weather-item">Ortalama Nem <span>${Math.round(humidity)}%</span></div>
-    <div class="weather-item">Gün Doğumu <span>${sunrise}</span></div>
-    <div class="weather-item">Gün Batımı <span>${sunset}</span></div>
-    <div class="weather-item">En yüksek sıcaklık <span>${Math.round(temp_max)}°C</span></div>
-    <div class="weather-item">En düşük sıcaklık <span>${Math.round(temp_min)}°C</span></div>
-  `;
-  
-  more_info.innerHTML = weatherInfo;
+      <div class="weather-item">Hissedilen <span>${Math.round(feels_like)}°C</span></div>
+      <div class="weather-item">Ortalama Nem <span>${Math.round(humidity)}%</span></div>
+      <div class="weather-item">Gün Doğumu <span>${sunriseFormatted}</span></div>
+      <div class="weather-item">Gün Batımı <span>${sunsetFormatted}</span></div>
+      <div class="weather-item">En yüksek sıcaklık <span>${temp_max}</span></div>
+      <div class="weather-item">En düşük sıcaklık <span>${temp_min}</span></div>
+    `;
+    
+    more_info.innerHTML = weatherInfo;
   }
 }
-  const dayPart = document.querySelectorAll('.day'); 
-  
-  
-  const initialActiveDay = dayPart[0];
-  dayPart.forEach(day => day.classList.remove('active')); 
-  initialActiveDay.classList.add('active'); 
-  initialActiveDay.focus(); 
 
-  dayPart.forEach(day => {
-      day.addEventListener('click', () => {
-        dayPart.forEach(d => d.classList.remove('active'));
-          day.classList.add('active'); 
-          day.focus(); 
-      });
+const dayPart = document.querySelectorAll('.day'); 
+const initialActiveDay = dayPart[0];
+dayPart.forEach(day => day.classList.remove('active')); 
+initialActiveDay.classList.add('active'); 
+initialActiveDay.focus(); 
+
+dayPart.forEach(day => {
+  day.addEventListener('click', () => {
+    dayPart.forEach(d => d.classList.remove('active'));
+    day.classList.add('active'); 
+    day.focus(); 
   });
-
-
+});
 
   
 

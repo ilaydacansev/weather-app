@@ -103,7 +103,7 @@ body {
   position: absolute;
   background: white;
   width: 90%;
-  border: 1px solid #587377;
+  /* border: 1px solid #587377; */
   background: #4c5657;
   position: absolute;
   left: 20px;
@@ -274,6 +274,8 @@ body {
   border-radius: 10px;
 }
 
+
+
 .active {
   background-color: transparent;
   border: 2px solid #a6b6e4;
@@ -294,6 +296,11 @@ body {
   margin-bottom: 15px;
 }
 
+/* .main-content {
+  display: flex;
+  flex-direction: column;
+} */
+
 .time .information {
   margin-left: 9%;
 }
@@ -309,8 +316,8 @@ body {
   position: absolute;
   left: 0; */
   position: relative;
-  left: 90%;
-  bottom: 56px;
+  left: 85%;
+  bottom: 91px;
 }
 
 .date {
@@ -320,9 +327,17 @@ body {
   color: #fff;
   position: relative;
   /* top: 45px; */
-  bottom: 30px;
+  bottom: 65px;
   left: 180px;
 }
+
+
+
+.active-temp {
+  position: relative;
+  bottom: 40px;
+}
+
 
 .weather-item {
   display: flex;
@@ -382,6 +397,11 @@ body {
   font-weight: 700;
 }
 
+.temp .span {
+  position: relative;
+  top: 20px;
+}
+
 /* .temp h1 {
   font-size: 100px;
   font-weight: 700;
@@ -397,9 +417,10 @@ body {
   font-style: italic;
   color: #fff;
   position: absolute;
-  right: 55px;
   top: 200px;
-  width: fit-content;
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .max {
