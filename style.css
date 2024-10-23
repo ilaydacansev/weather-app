@@ -37,20 +37,12 @@ body {
   width: 100%;
 }
 
-/* .cloud {
-  height: 65%;
-  margin-top: 55px;
-} */
+
 
 .weather-icon {
-  /* width: 90px;
-  height: 60px; */
   position: relative;
   top: 90px;
   right: 110px;
-  /* right: 20px; */
-  /* height: 50%; */
-  /* margin-top: 50px; */
 }
 
 .search-container {
@@ -96,14 +88,12 @@ body {
 }
 
 #search-list {
-  /* border: 1px solid #ccc; */
   list-style-type: none;
   padding: 0;
   margin: 0;
   position: absolute;
   background: white;
   width: 90%;
-  /* border: 1px solid #587377; */
   background: #4c5657;
   position: absolute;
   left: 20px;
@@ -125,13 +115,11 @@ body {
   width: auto;
   font-size: 20px;
   font-weight: 400;
-  margin-top: 12px;
-  /* padding-left: 13%; */
+  margin-top: 14px;
   color: #fff;
-  /* margin-left: auto; */
   transform: translate(0, -28%);
   position: absolute;
-  left: 75%;
+  left: 74.5%;
 }
 
 .city span {
@@ -143,14 +131,12 @@ body {
   color: #cdd0df;
   position: relative;
   left: 35%;
-  font-size: 24px;
+  font-size: 26px;
   padding-top: 7.5px;
   margin-right: 10px;
 }
 ß
 .information {
-  /* position: relative;
-  left: 23%; */
   width: 100%;
   text-align: end;
   height: 100%;
@@ -159,8 +145,8 @@ body {
 .dropdown {
   position: relative;
   display: inline-block;
-  left: 1%;
-  top: 4%;
+  left: 3%;
+  top: 10%;
 }
 
 .dropdown i {
@@ -209,8 +195,6 @@ body {
 .content {
   display: flex;
   width: 27%;
-  /* padding-left: 5%; */
-  /* padding-top: 25px; */
   position: relative;
   right: 30%;
   top: 45px;
@@ -234,10 +218,7 @@ body {
   display: flex;
   justify-content: space-between;
   width: 100%;
-  /* padding: 50px; */
   padding: 0px 30px 15px 30px;
-  /* padding-top: 30px; */
-  /* padding-top: 10px; */
   position: relative;
   top: 133px;
   height: 220px;
@@ -249,17 +230,13 @@ body {
   width: 100%;
   padding: 10px;
   background: rgba(0, 0, 0, 0.3);
-  /* border: 1px solid #898ea6; */
   border-radius: 15px;
   border: 1px solid #272c3a;
 }
 
 .day {
   flex: 1;
-  /* width: 40px; */
   text-align: center;
-  /* margin: 10px; */
-  /* margin-left: 12px; */
   box-sizing: border-box;
   margin-left: 10px;
   color: #fff;
@@ -296,10 +273,6 @@ body {
   margin-bottom: 15px;
 }
 
-/* .main-content {
-  display: flex;
-  flex-direction: column;
-} */
 
 .time .information {
   margin-left: 9%;
@@ -309,12 +282,7 @@ body {
   width: fit-content;
   font-size: 16.5px;
   font-weight: 300;
-  /* transform: translate(27%, 84%); */
-  /* margin-bottom: 9px; */
   color: #fff;
-  /* transform: translate(117%, 214%);
-  position: absolute;
-  left: 0; */
   position: relative;
   left: 85%;
   bottom: 91px;
@@ -326,7 +294,6 @@ body {
   font-weight: 300;
   color: #fff;
   position: relative;
-  /* top: 45px; */
   bottom: 65px;
   left: 180px;
 }
@@ -385,9 +352,6 @@ body {
 }
 
 .temp {
-  /* font-size: 94px; */
-  /* font-weight: 700; */
-  /* margin-bottom: 9px; */
   width: fit-content;
   position: relative;
   left: 173px;
@@ -402,10 +366,6 @@ body {
   top: 20px;
 }
 
-/* .temp h1 {
-  font-size: 100px;
-  font-weight: 700;
-} */
 
 .dropdown-content hr {
   height: 2px;
@@ -417,7 +377,7 @@ body {
   font-style: italic;
   color: #fff;
   position: absolute;
-  top: 200px;
+  top: 220px;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -440,7 +400,7 @@ body {
   padding-bottom: 5px;
 }
 
-/* img {
-  width: 100%;
-  filter: grayscale(50%);
-} */
+
+
+
+

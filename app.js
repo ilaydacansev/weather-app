@@ -54,13 +54,13 @@ const getWeather = (cityName) => {
       return response.json();
     })
     .then((data) => showWeatherData(data))
-    .catch((error) => {
-      console.error(error);
-      alert(`Hata: ${error.message}`);
-      const errorMessageElement = document.getElementById('error-message');
-      errorMessageElement.innerText = `Bir hata oluştu: ${error.message}`;
-      errorMessageElement.style.display = 'block';
-    });
+    // .catch((error) => {
+    //   console.error(error);
+    //   alert(`Hata: ${error.message}`);
+    //   const errorMessageElement = document.getElementById('error-message');
+    //   errorMessageElement.innerText = `Bir hata oluştu: ${error.message}`;
+    //   errorMessageElement.style.display = 'block';
+    // });
 };
 
 const displayResult = (result) => {
@@ -182,14 +182,14 @@ setInterval(() => {
 
 function success(position) {
   const { latitude: lat, longitude: lon } = position.coords;
-  fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${key}&units=metric`)
+  fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${key}&units=metric&lang=tr`)
     .then((response) => {
       if (!response.ok) throw new Error("Konum için hava durumu verisi alınamadı");
       return response.json();
     })
     .then((data) => {
       displayResult(data);
-      return fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${key}&units=metric`);
+      return fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${key}&units=metric&lang=tr`);
     })
     .then((response) => {
       if (!response.ok) throw new Error("Konum için hava durumu tahmini alınamadı");
@@ -236,6 +236,8 @@ function setActive(element, date, time, temp, desc, icon, feels_like, humidity, 
       </div>
     `;
 
+
+    
     function formatTime(timeString) {
       return timeString.split(':').slice(0, 2).join(':'); 
     }
@@ -270,7 +272,6 @@ dayPart.forEach(day => {
   });
 });
 
-  
 
 
 
