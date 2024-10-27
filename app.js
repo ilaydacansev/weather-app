@@ -203,6 +203,12 @@ function success(position) {
     });
 }
 
+function handleError(message) {
+  console.error(message);
+  alert(`Hata: ${message}`);
+}
+
+
 function error() {
   tempElement.innerHTML = "Konum alınamadı.";
 }
@@ -210,7 +216,7 @@ function error() {
 if (navigator.geolocation) {
   navigator.geolocation.getCurrentPosition(success, error);
 } else {
-  tempElement.innerHTML = "Geolocation desteği yok.";
+  tempElement.innerHTML = "Konum desteği yok";
 }
 
 function setActive(element, date, time, temp, desc, icon, feels_like, humidity, sunrise, sunset, temp_max, temp_min) {
