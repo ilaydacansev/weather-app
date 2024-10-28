@@ -15,6 +15,15 @@ Bu proje, OpenWeatherMap API'sini kullanarak hava durumu bilgilerini gösteren b
 - API'den alınan verilerle hava durumu bilgileri dinamik olarak güncellenmektedir.
 - Kullanıcı deneyimini geliştirmek için tasarımda dikkate alınmıştır.
 
+## Kullanım
+
+- Projeyi tarayıcınızda açın.
+- İlgilendiğiniz şehir adını girin ve hava durumu bilgilerini görüntüleyin.
+
+## Katkıda Bulunanlar
+
+- İlayda Cansev
+
 ## Kurulum
 
 Bu projeyi klonlayın:
@@ -22,11 +31,4 @@ Bu projeyi klonlayın:
 ```bash
 git clone https://github.com/ilaydacansev/HAVA-DURUMU-WEBS-TES-.git
 
-## Kullanım
 
-    - Projeyi tarayıcınızda açın.
-    - İlgilendiğiniz şehir adını girin ve hava durumu bilgilerini görüntüleyin.
-
-## Katkıda Bulunanlar
-
-    İlayda Cansev
