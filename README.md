@@ -22,34 +22,11 @@ Bu projeyi klonlayın:
 ```bash
 git clone https://github.com/ilaydacansev/HAVA-DURUMU-WEBS-TES-.git
 
+## Kullanım
 
-Dikkat Etmen Gerekenler
+    - Projeyi tarayıcınızda açın.
+    - İlgilendiğiniz şehir adını girin ve hava durumu bilgilerini görüntüleyin.
 
-- Markdown İşaretleme: Kod bloklarını belirtmek için üç adet backtick (```) kullanmalısın.
-- Düzenleme: Bölümler arasına boşluklar ekleyerek okunabilirliği artırabilirsin.
-- Lisans: Eğer bir lisans varsa eklemeyi unutma. Eğer yoksa bu kısmı çıkarabilirsin.
-
-Bu düzenlemeleri yaptıktan sonra dosyanı kaydedip tekrar GitHub’a yükle:
-
-git add README.md
-git commit -m "README dosyası güncellendi"
-git push origin main
-
-Katkıda Bulunanlar
-
-    İlayda Cansev
-
-
-### Öneriler:
-
-1. **Başlıklar:** Her bölüm için başlıklar (`##` ile) kullanmak, içeriği daha düzenli hale getirir.
-2. **Kod Blokları:** Kod blokları için backtick'leri kullanarak okunabilirliği artırmışsın, bu iyi bir uygulama.
-3. **Liste İşaretleri:** Katkıda bulunanlar kısmında liste işareti kullanarak daha net bir görünüm sağlamış olursun.
-
-Bu şekilde düzenledikten sonra README dosyan daha profesyonel ve okunabilir olacak. Başka bir sorunuz olursa sormaktan çekinmeyin!
-
-
-
-Katkıda Bulunanlar
+## Katkıda Bulunanlar
 
     İlayda Cansev
