@@ -197,7 +197,7 @@ body {
   width: 27%;
   position: relative;
   right: 30%;
-  top: 45px;
+  top: 70px;
 }
 
 #more_info {
@@ -205,7 +205,7 @@ body {
   flex-direction: column;
   position: absolute;
   left: 65%;
-  top: 145px;
+  top: 170px;
   text-align: start;
   width: 25%;
   border: 1px solid #272c3a;
@@ -220,7 +220,7 @@ body {
   width: 100%;
   padding: 0px 30px 15px 30px;
   position: relative;
-  top: 133px;
+  top: 180px;
   height: 220px;
 }
 
@@ -391,16 +391,25 @@ body {
   color: #fff;
 }
 
-.min {
+.loader-part {
   display: flex;
-  justify-content: space-between;
-  font-size: 19px;
-  font-weight: 100;
-  color: #fff;
-  padding-bottom: 5px;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  bottom: 0;
+  position: fixed;
+  width: 100%;
+
+}
+
+.loader-part i {
+  font-size: 2rem; /* İkon boyutu */
+  animation: spin 1s linear infinite; /* Dönme animasyonu */
+  color: #cdd0df;
 }
 
 
-
-
-
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

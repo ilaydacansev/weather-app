@@ -280,112 +280,73 @@ dayPart.forEach(day => {
 
 
 
+function load(url, vars) {
+  const loader = document.getElementById('loader');
+  const loaderPart = document.getElementById('loader-part');
+
+  loader.style.display = 'flex';
+  loaderPart.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+
+  setTimeout(function() {
+      var req = new XMLHttpRequest();
+      req.open("POST", url, true);
+
+      req.onreadystatechange = function () {
+          if (req.readyState == 4) {
+              if (req.status == 200) {
+                  document.getElementById('content').innerHTML = req.responseText;
+              } else {
+                  console.error('Error loading content:', req.status);
+              }
+              
+              loader.style.display = 'none';
+              loaderPart.style.backgroundColor = 'transparent';
+          }
+      };
+
+      req.send(vars);
+  }, 2800); 
+}
+
+load('https://jsonplaceholder.typicode.com/posts/1', null); 
 
 
-//  const cities = [
-//   "Adana",
-//   "Adıyaman",
-//   "Afyonkarahisar",
-//   "Ağrı",
-//   "Aksaray",
-//   "Amasya",
-//   "Ankara",
-//   "Antalya",
-//   "Ardahan",
-//   "Artvin",
-//   "Aydın",
-//   "Balıkesir",
-//   "Bartın",
-//   "Batman",
-//   "Bayburt",
-//   "Bilecik",
-//   "Bingöl",
-//   "Bitlis",
-//   "Bolu",
-//   "Burdur",
-//   "Bursa",
-//   "Çanakkale",
-//   "Çankırı",
-//   "Çorum",
-//   "Denizli",
-//   "Diyarbakır",
-//   "Edirne",
-//   "Elazığ",
-//   "Erzincan",
-//   "Erzurum",
-//   "Eskişehir",
-//   "Gaziantep",
-//   "Giresun",
-//   "Gümüşhane",
-//   "Hakkari",
-//   "Hatay",
-//   "Iğdır",
-//   "Isparta",
-//   "İstanbul",
-//   "İzmir",
-//   "Kahramanmaraş",
-//   "Karabük",
-//   "Karamanoğlu",
-//   "Kars",
-//   "Kastamonu",
-//   "Kayseri",
-//   "Kırıkkale",
-//   "Kırklareli",
-//   "Kırşehir",
-//   "Konya",
-//   "Kütahya",
-//   "Malatya",
-//   "Manisa",
-//   "Mardin",
-//   "Mersin",
-//   "Muğla",
-//   "Muş",
-//   "Nevşehir",
-//   "Niğde",
-//   "Ordu",
-//   "Osmaniye",
-//   "Rize",
-//   "Sakarya",
-//   "Samsun",
-//   "Siirt",
-//   "Sinop",
-//   "Sivas",
-//   "Tekirdağ",
-//   "Tokat",
-//   "Trabzon",
-//   "Tunceli",
-//   "Şanlıurfa",
-//   "Uşak",
-//   "Van",
-//   "Yalova",
-//   "Yozgat",
-//   "Zonguldak",
-// ];
 
-// const input = document.getElementById("searchBar");
-// const searchList = document.getElementById("search-list");
 
-// input.addEventListener("input", function () {
-//   const query = this.value.toLowerCase();
-//   searchList.innerHTML = "";
+// function load(url, vars) {
+//   const loader = document.getElementById('loader');
+//   const loaderPart = document.getElementById('loader-part');
 
-//   if (query.length > 0) {
-//     const filteredCities = cities.filter((city) =>
-//       city.toLowerCase().startsWith(query)
-//     );
+//   loader.style.display = 'flex';
+//   loaderPart.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
 
-//     filteredCities.forEach((city) => {
-//       const listItem = document.createElement("li");
-//       listItem.textContent = city;
-//       listItem.onclick = () => {
-//         input.value = city;
-//         searchList.innerHTML = "";
-//       };
-//       searchList.appendChild(listItem);
-//     });
+//   // Veri talebi
+//   var req = new XMLHttpRequest();
+//   req.open("POST", url, true);
 
-//     searchList.style.display = filteredCities.length > 0 ? "block" : "none";
-//   } else {
-//     searchList.style.display = "none";
-//   }
-// });
+//   req.onreadystatechange = function () {
+//       if (req.readyState === 4) { // Yükleme tamamlandı
+//           // İçerik yüklendiğinde
+//           if (req.status === 200) {
+//               // İçeriği güncelle
+//               document.getElementById('content').innerHTML = req.responseText;
+//           } else {
+//               console.error('Error loading content:', req.status, req.statusText);
+//           }
+//           // Loader'ı gizle
+//           loader.style.display = 'none'; // Gizle
+//           loaderPart.style.backgroundColor = 'transparent';
+//       }
+//   };
+
+//   req.send(vars);
+// }
+
+// // Örnek bir yükleme işlemi
+// load('https://jsonplaceholder.typicode.com/posts/1', null);
+
+
+
+
+
+
