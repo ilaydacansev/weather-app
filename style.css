@@ -199,6 +199,8 @@ body {
   right: 30%;
   top: 45px;
   height:280px;
+  top: 70px;
+
 }
 
 #more_info {
@@ -206,7 +208,7 @@ body {
   flex-direction: column;
   position: absolute;
   left: 65%;
-  top: 145px;
+  top: 170px;
   text-align: start;
   width: 25%;
   border: 1px solid #272c3a;
@@ -221,7 +223,7 @@ body {
   width: 100%;
   padding: 0px 30px 15px 30px;
   position: relative;
-  top: 133px;
+  top: 180px;
   height: 220px;
 }
 
@@ -390,41 +392,4 @@ body {
   font-size: 19px;
   font-weight: 100;
   color: #fff;
-}
-
-.min {
-  display: flex;
-  justify-content: space-between;
-  font-size: 19px;
-  font-weight: 100;
-  color: #fff;
-  padding-bottom: 5px;
-}
-
-
-
-
-
-.loader-part {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 50px;
-  /* bottom: 0; */
-  position: fixed;
-  width: 100%;
-  top: 50%;
-
-}
-
-.loader-part i {
-  font-size: 2rem; 
-  animation: spin 1s linear infinite; 
-  color: #cdd0df;
-}
-
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
 }
