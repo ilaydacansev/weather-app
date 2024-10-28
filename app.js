@@ -286,7 +286,7 @@ function load(url, vars) {
  
  
   loader.style.display = 'flex';
-  loaderPart.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+  // loaderPart.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
  
  
   setTimeout(function() {
@@ -303,7 +303,7 @@ function load(url, vars) {
               }
              
               loader.style.display = 'none';
-              loaderPart.style.backgroundColor = 'transparent';
+              // loaderPart.style.backgroundColor = 'transparent';
           }
       };
  
@@ -314,6 +314,8 @@ function load(url, vars) {
  
  
  load('https://jsonplaceholder.typicode.com/posts/1', null);
+
+ 
 
 
 
