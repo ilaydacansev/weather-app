@@ -282,6 +282,8 @@ dayPart.forEach(day => {
 
 
 
+
+
 //  const cities = [
 //   "Adana",
 //   "Adıyaman",
