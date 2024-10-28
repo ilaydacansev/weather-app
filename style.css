@@ -198,6 +198,7 @@ body {
   position: relative;
   right: 30%;
   top: 45px;
+  height:280px;
 }
 
 #more_info {
@@ -404,3 +405,26 @@ body {
 
 
 
+.loader-part {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  /* bottom: 0; */
+  position: fixed;
+  width: 100%;
+  top: 50%;
+
+}
+
+.loader-part i {
+  font-size: 2rem; 
+  animation: spin 1s linear infinite; 
+  color: #cdd0df;
+}
+
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

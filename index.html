@@ -33,7 +33,7 @@
   </head>
 
   <body>
-    <div class="app">
+    <div id="app" class="app">
       <div class="header">
         <div class="dropdown">
           <button class="dropbtn" id="myDropdown" onclick="toggleDropdown()">
@@ -68,7 +68,7 @@
 
       <div class="content" id="content">
         <div id="information" class="information w-100">
-          <img class="weather-icon text-left" src="02d@2x.png" alt="cloudy" />
+          <img class="weather-icon text-left" src="" alt="cloudy" />
           <div id="date" class="date"></div>
           <div id="time" class="time"></div>
           <div id="temp" class="temp"><span></span></div>
@@ -85,52 +85,56 @@
 
             <img
               class="img-day"
-              src="https://openweathermap.org/img/wn/02d.png"
+              src=""
               alt="cloudy"
             />
-            <span class="weather-description">&deg;C</span>
+            <span class="weather-description"></span>
           </div>
           <div class="day" onclick="setActive(this)">
             <div class="dday" id="dday"></div>
 
             <img
               class="img-day"
-              src="https://openweathermap.org/img/wn/02d.png"
+              src=""
               alt="cloudy"
             />
-            <span class="weather-description">&deg;C</span>
+            <span class="weather-description"></span>
           </div>
           <div class="day" onclick="setActive(this)">
             <div class="dday" id="dday"></div>
 
             <img
               class="img-day"
-              src="https://openweathermap.org/img/wn/02d.png"
+              src=""
               alt="cloudy"
             />
-            <span class="weather-description">&deg;C</span>
+            <span class="weather-description"></span>
           </div>
           <div class="day" onclick="setActive(this)">
             <div class="dday" id="dday"></div>
             <img
               class="img-day"
-              src="https://openweathermap.org/img/wn/02d.png"
+              src=""
               alt="cloudy"
             />
-            <span class="weather-description">&deg;C</span>
+            <span class="weather-description"></span>
           </div>
           <div class="day" onclick="setActive(this)">
             <div class="dday" id="dday"></div>
 
             <img
               class="img-day"
-              src="https://openweathermap.org/img/wn/02d.png"
+              src=""
               alt="cloudy"
             />
-            <span class="weather-description">&deg;C</span>
+            <span class="weather-description"></span>
           </div>
         </div>
       </div>
+    </div>
+
+    <div  id="loader-part" class="loader-part">
+      <i id="loader" class="fa-solid fa-spinner" style="display: block;"></i>
     </div>
 
     <!-- BOOTSTRAP JS -->

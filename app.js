@@ -12,7 +12,7 @@ window.onclick = function (event) {
   }
 };
 
-
+const app = document.getElementById("app");
 const timeElement = document.getElementById("time");
 const dateElement = document.getElementById("date");
 const cityElement = document.getElementById("city");
@@ -174,11 +174,11 @@ fetch("https://raw.githubusercontent.com/lutangar/cities.json/master/cities.json
   })
   .catch((error) => console.error("Bir hata oluştu:", error));
 
-setInterval(() => {
-  const time = new Date();
-  timeElement.innerHTML = `${time.getHours().toString().padStart(2, "0")}:${time.getMinutes().toString().padStart(2, "0")}`;
-  dateElement.innerHTML = `${daysOfWeek[time.getDay()]}, ${time.getDate()} ${months[time.getMonth()]}`;
-}, 100);
+// setInterval(() => {
+  // const time = new Date();
+  // timeElement.innerHTML = `${time.getHours().toString().padStart(2, "0")}:${time.getMinutes().toString().padStart(2, "0")}`;
+  // dateElement.innerHTML = `${daysOfWeek[time.getDay()]}, ${time.getDate()} ${months[time.getMonth()]}`;
+// }, 100);
 
 function success(position) {
   const { latitude: lat, longitude: lon } = position.coords;
@@ -276,110 +276,69 @@ dayPart.forEach(day => {
 
 
 
-//  const cities = [
-//   "Adana",
-//   "Adıyaman",
-//   "Afyonkarahisar",
-//   "Ağrı",
-//   "Aksaray",
-//   "Amasya",
-//   "Ankara",
-//   "Antalya",
-//   "Ardahan",
-//   "Artvin",
-//   "Aydın",
-//   "Balıkesir",
-//   "Bartın",
-//   "Batman",
-//   "Bayburt",
-//   "Bilecik",
-//   "Bingöl",
-//   "Bitlis",
-//   "Bolu",
-//   "Burdur",
-//   "Bursa",
-//   "Çanakkale",
-//   "Çankırı",
-//   "Çorum",
-//   "Denizli",
-//   "Diyarbakır",
-//   "Edirne",
-//   "Elazığ",
-//   "Erzincan",
-//   "Erzurum",
-//   "Eskişehir",
-//   "Gaziantep",
-//   "Giresun",
-//   "Gümüşhane",
-//   "Hakkari",
-//   "Hatay",
-//   "Iğdır",
-//   "Isparta",
-//   "İstanbul",
-//   "İzmir",
-//   "Kahramanmaraş",
-//   "Karabük",
-//   "Karamanoğlu",
-//   "Kars",
-//   "Kastamonu",
-//   "Kayseri",
-//   "Kırıkkale",
-//   "Kırklareli",
-//   "Kırşehir",
-//   "Konya",
-//   "Kütahya",
-//   "Malatya",
-//   "Manisa",
-//   "Mardin",
-//   "Mersin",
-//   "Muğla",
-//   "Muş",
-//   "Nevşehir",
-//   "Niğde",
-//   "Ordu",
-//   "Osmaniye",
-//   "Rize",
-//   "Sakarya",
-//   "Samsun",
-//   "Siirt",
-//   "Sinop",
-//   "Sivas",
-//   "Tekirdağ",
-//   "Tokat",
-//   "Trabzon",
-//   "Tunceli",
-//   "Şanlıurfa",
-//   "Uşak",
-//   "Van",
-//   "Yalova",
-//   "Yozgat",
-//   "Zonguldak",
-// ];
+function load(url, vars) {
+  const loader = document.getElementById('loader');
+  const loaderPart = document.getElementById('loader-part');
+  const body = document.body;
 
-// const input = document.getElementById("searchBar");
-// const searchList = document.getElementById("search-list");
+  loader.style.display = 'flex';
+  body.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+  
 
-// input.addEventListener("input", function () {
-//   const query = this.value.toLowerCase();
-//   searchList.innerHTML = "";
+  setTimeout(function() {
+      var req = new XMLHttpRequest();
+      req.open("POST", url, true);
 
-//   if (query.length > 0) {
-//     const filteredCities = cities.filter((city) =>
-//       city.toLowerCase().startsWith(query)
-//     );
+      req.onreadystatechange = function () {
+          if (req.readyState == 4) {
+              if (req.status == 200) {
+                  document.getElementById('content').innerHTML = req.responseText;
+              } else {
+                  console.error('Error loading content:', req.status);
+              }
+              
+              loader.style.display = 'none';
+              body.style.backgroundColor = 'transparent';
+          }
+      };
 
-//     filteredCities.forEach((city) => {
-//       const listItem = document.createElement("li");
-//       listItem.textContent = city;
-//       listItem.onclick = () => {
-//         input.value = city;
-//         searchList.innerHTML = "";
-//       };
-//       searchList.appendChild(listItem);
-//     });
+      req.send(vars);
+  }, 3000); 
+}
 
-//     searchList.style.display = filteredCities.length > 0 ? "block" : "none";
-//   } else {
-//     searchList.style.display = "none";
-//   }
-// });
+load('https://jsonplaceholder.typicode.com/posts/1', null); 
+
+
+
+
+// function load(url, vars) {
+//   const loader = document.getElementById('loader');
+//   const loaderPart = document.getElementById('loader-part');
+
+//   loader.style.display = 'flex';
+//   // loaderPart.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+
+//   // Veri talebi
+//   var req = new XMLHttpRequest();
+//   req.open("POST", url, true);
+
+//   req.onreadystatechange = function () {
+//       if (req.readyState === 4) { // Yükleme tamamlandı
+//           // İçerik yüklendiğinde
+//           if (req.status === 200) {
+//               // İçeriği güncelle
+//               document.getElementById('content').innerHTML = req.responseText;
+//           } else {
+//               console.error('Error loading content:', req.status, req.statusText);
+//           }
+//           // Loader'ı gizle
+//           loader.style.display = 'none'; // Gizle
+//           // loaderPart.style.backgroundColor = 'transparent';
+//       }
+//   };
+
+//   req.send(vars);
+// }
+
+// // Örnek bir yükleme işlemi
+// load('https://jsonplaceholder.typicode.com/posts/1', null);
