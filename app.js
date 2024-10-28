@@ -339,6 +339,3 @@ load('https://jsonplaceholder.typicode.com/posts/1', null);
 
 //   req.send(vars);
 // }
-
-// // Örnek bir yükleme işlemi
-// load('https://jsonplaceholder.typicode.com/posts/1', null);
