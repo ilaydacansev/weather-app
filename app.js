@@ -280,7 +280,40 @@ dayPart.forEach(day => {
 
 
 
-
+function load(url, vars) {
+  const loader = document.getElementById('loader');
+  const loaderPart = document.getElementById('loader-part');
+ 
+ 
+  loader.style.display = 'flex';
+  loaderPart.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+ 
+ 
+  setTimeout(function() {
+      var req = new XMLHttpRequest();
+      req.open("POST", url, true);
+ 
+ 
+      req.onreadystatechange = function () {
+          if (req.readyState == 4) {
+              if (req.status == 200) {
+                  document.getElementById('content').innerHTML = req.responseText;
+              } else {
+                  console.error('Error loading content:', req.status);
+              }
+             
+              loader.style.display = 'none';
+              loaderPart.style.backgroundColor = 'transparent';
+          }
+      };
+ 
+ 
+      req.send(vars);
+  }, 2800);
+ }
+ 
+ 
+ load('https://jsonplaceholder.typicode.com/posts/1', null);
 
 
 
