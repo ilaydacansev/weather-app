@@ -1,4 +1,4 @@
-# Hava Durumu Projesi
+# Hava Durumu Web Projesi
 
 Bu proje, OpenWeatherMap API'sini kullanarak hava durumu bilgilerini gösteren bir web uygulamasıdır.
 
@@ -17,25 +17,7 @@ Bu proje, OpenWeatherMap API'sini kullanarak hava durumu bilgilerini gösteren b
 
 ## Kurulum
 
-1. Bu projeyi klonlayın:
-   ```bash
-   git clone https://github.com/ilaydacansev/HAVA-DURUMU-WEBS-TES-.git
-
-   Kullanım
-
-    Projeyi tarayıcınızda açın.
-    İlgilendiğiniz şehir adını girin ve hava durumu bilgilerini görüntüleyin.
-
-Katkıda Bulunanlar
-
-    İlayda Cansev
-
-    
-### 3. Dosyayı GitHub'a Yükle
-
-README.md dosyanı kaydet ve ardından değişiklikleri GitHub'a yükle:
+Bu projeyi klonlayın:
 
 ```bash
-git add README.md
-git commit -m "README dosyası eklendi"
-git push origin main
+git clone https://github.com/ilaydacansev/HAVA-DURUMU-WEBS-TES-.git
