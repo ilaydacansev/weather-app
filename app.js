@@ -1,16 +1,16 @@
-function toggleDropdown() {
-  document.getElementById("myDropdown").classList.toggle("show");
-}
+// function toggleDropdown() {
+//   document.getElementById("myDropdown").classList.toggle("show");
+// }
 
-window.onclick = function (event) {
-  if (!event.target.matches(".dropbtn")) {
-    var dropdowns = document.getElementsByClassName("dropdown-content");
-    document.getElementById("searchBar").value = "";
-    for (var i = 0; i < dropdowns.length; i++) {
-      dropdowns[i].classList.remove("show");
-    }
-  }
-};
+// window.onclick = function (event) {
+//   if (!event.target.matches(".dropbtn")) {
+//     var dropdowns = document.getElementsByClassName("dropdown-content");
+//     document.getElementById("searchBar").value = "";
+//     for (var i = 0; i < dropdowns.length; i++) {
+//       dropdowns[i].classList.remove("show");
+//     }
+//   }
+// };
 
 const app = document.getElementById("app");
 const timeElement = document.getElementById("time");
@@ -54,13 +54,13 @@ const getWeather = (cityName) => {
       return response.json();
     })
     .then((data) => showWeatherData(data))
-    // .catch((error) => {
-    //   console.error(error);
-    //   alert(`Hata: ${error.message}`);
-    //   const errorMessageElement = document.getElementById('error-message');
-    //   errorMessageElement.innerText = `Bir hata oluştu: ${error.message}`;
-    //   errorMessageElement.style.display = 'block';
-    // });
+    .catch((error) => {
+      console.error(error);
+      alert(`Hata: ${error.message}`);
+      const errorMessageElement = document.getElementById('error-message');
+      errorMessageElement.innerText = `Bir hata oluştu: ${error.message}`;
+      errorMessageElement.style.display = 'block';
+    });
 };
 
 const displayResult = (result) => {
@@ -286,7 +286,6 @@ function load(url, vars) {
  
  
   loader.style.display = 'flex';
-  // loaderPart.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
  
  
   setTimeout(function() {
@@ -303,7 +302,6 @@ function load(url, vars) {
               }
              
               loader.style.display = 'none';
-              // loaderPart.style.backgroundColor = 'transparent';
           }
       };
  
@@ -313,116 +311,9 @@ function load(url, vars) {
  }
  
  
- load('https://jsonplaceholder.typicode.com/posts/1', null);
+ fetch('https://jsonplaceholder.typicode.com/posts/1', null);
 
  
 
 
 
-//  const cities = [
-//   "Adana",
-//   "Adıyaman",
-//   "Afyonkarahisar",
-//   "Ağrı",
-//   "Aksaray",
-//   "Amasya",
-//   "Ankara",
-//   "Antalya",
-//   "Ardahan",
-//   "Artvin",
-//   "Aydın",
-//   "Balıkesir",
-//   "Bartın",
-//   "Batman",
-//   "Bayburt",
-//   "Bilecik",
-//   "Bingöl",
-//   "Bitlis",
-//   "Bolu",
-//   "Burdur",
-//   "Bursa",
-//   "Çanakkale",
-//   "Çankırı",
-//   "Çorum",
-//   "Denizli",
-//   "Diyarbakır",
-//   "Edirne",
-//   "Elazığ",
-//   "Erzincan",
-//   "Erzurum",
-//   "Eskişehir",
-//   "Gaziantep",
-//   "Giresun",
-//   "Gümüşhane",
-//   "Hakkari",
-//   "Hatay",
-//   "Iğdır",
-//   "Isparta",
-//   "İstanbul",
-//   "İzmir",
-//   "Kahramanmaraş",
-//   "Karabük",
-//   "Karamanoğlu",
-//   "Kars",
-//   "Kastamonu",
-//   "Kayseri",
-//   "Kırıkkale",
-//   "Kırklareli",
-//   "Kırşehir",
-//   "Konya",
-//   "Kütahya",
-//   "Malatya",
-//   "Manisa",
-//   "Mardin",
-//   "Mersin",
-//   "Muğla",
-//   "Muş",
-//   "Nevşehir",
-//   "Niğde",
-//   "Ordu",
-//   "Osmaniye",
-//   "Rize",
-//   "Sakarya",
-//   "Samsun",
-//   "Siirt",
-//   "Sinop",
-//   "Sivas",
-//   "Tekirdağ",
-//   "Tokat",
-//   "Trabzon",
-//   "Tunceli",
-//   "Şanlıurfa",
-//   "Uşak",
-//   "Van",
-//   "Yalova",
-//   "Yozgat",
-//   "Zonguldak",
-// ];
-
-// const input = document.getElementById("searchBar");
-// const searchList = document.getElementById("search-list");
-
-// input.addEventListener("input", function () {
-//   const query = this.value.toLowerCase();
-//   searchList.innerHTML = "";
-
-//   if (query.length > 0) {
-//     const filteredCities = cities.filter((city) =>
-//       city.toLowerCase().startsWith(query)
-//     );
-
-//     filteredCities.forEach((city) => {
-//       const listItem = document.createElement("li");
-//       listItem.textContent = city;
-//       listItem.onclick = () => {
-//         input.value = city;
-//         searchList.innerHTML = "";
-//       };
-//       searchList.appendChild(listItem);
-//     });
-
-//     searchList.style.display = filteredCities.length > 0 ? "block" : "none";
-//   } else {
-//     searchList.style.display = "none";
-//   }
-// });

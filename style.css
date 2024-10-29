@@ -115,7 +115,7 @@ body {
   width: auto;
   font-size: 20px;
   font-weight: 400;
-  margin-top: 14px;
+  margin-top: 20px;
   color: #fff;
   transform: translate(0, -28%);
   position: absolute;
@@ -132,7 +132,7 @@ body {
   position: relative;
   left: 35%;
   font-size: 26px;
-  padding-top: 7.5px;
+  padding-top: 12.5px;
   margin-right: 10px;
 }
 ß
@@ -400,7 +400,6 @@ body {
   justify-content: center;
   align-items: center;
   height: 50px;
-  /* bottom: 0; */
   position: fixed;
   width: 100%;
   top: 50%;
