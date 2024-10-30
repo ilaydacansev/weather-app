@@ -23,7 +23,6 @@ const daysOfWeek = [
 
 const getWeather = (cityName) => {
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${key}&units=metric&lang=tr`;
-  // const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${key}&units=metric&lang=tr`;
 
   fetch(url)
     .then((response) => {
