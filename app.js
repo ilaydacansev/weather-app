@@ -9,6 +9,7 @@ const searchList = document.getElementById("search-list");
 const day_info = document.getElementById("days-info");
 let currentIndex = -1;
 
+const key = "api_key";
 
 const months = [
   "Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran",
@@ -21,8 +22,8 @@ const daysOfWeek = [
 ];
 
 const getWeather = (cityName) => {
-  
-  const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${key}&units=metric&lang=tr`;
+  const url = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${key}&units=metric&lang=tr`;
+  // const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${key}&units=metric&lang=tr`;
 
   fetch(url)
     .then((response) => {
@@ -31,7 +32,7 @@ const getWeather = (cityName) => {
     })
     .then((result) => {
       displayResult(result);
-      return fetch(forecastUrl);
+      return fetch(url);
     })
     .then((response) => {
       if (!response.ok) throw new Error("Hava durumu tahmini alınamadı");
