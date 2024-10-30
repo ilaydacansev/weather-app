@@ -9,7 +9,6 @@ const searchList = document.getElementById("search-list");
 const day_info = document.getElementById("days-info");
 let currentIndex = -1;
 
-const key = "6a4d76c560f8c7925b99f1b3acb1c689";
 
 const months = [
   "Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran",
@@ -22,7 +21,7 @@ const daysOfWeek = [
 ];
 
 const getWeather = (cityName) => {
-  const url = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${key}&units=metric&lang=tr`;
+  
   const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${key}&units=metric&lang=tr`;
 
   fetch(url)
