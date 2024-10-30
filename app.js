@@ -1,5 +1,4 @@
 const timeElement = document.getElementById("time");
-const dateElement = document.getElementById("date");
 const cityElement = document.getElementById("city");
 const tempElement = document.getElementById("temp");
 const descElement = document.getElementById("desc");
@@ -61,7 +60,6 @@ const showWeatherData = (forecast) => {
     console.error("Hava durumu verisi alınamadı.");
     return;
   }
-
   const firstDay = forecast.list[0];
   const initialDate = new Date(firstDay.dt * 1000);
   const initialIconUrl = `https://openweathermap.org/img/wn/${firstDay.weather[0].icon}@2x.png`;
@@ -158,12 +156,6 @@ fetch("https://raw.githubusercontent.com/lutangar/cities.json/master/cities.json
   })
   .catch((error) => console.error("Bir hata oluştu:", error));
 
-// setInterval(() => {
-  // const time = new Date();
-  // timeElement.innerHTML = `${time.getHours().toString().padStart(2, "0")}:${time.getMinutes().toString().padStart(2, "0")}`;
-  // dateElement.innerHTML = `${daysOfWeek[time.getDay()]}, ${time.getDate()} ${months[time.getMonth()]}`;
-// }, 100);
-
 function success(position) {
   const { latitude: lat, longitude: lon } = position.coords;
   fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${key}&units=metric&lang=tr`)
@@ -191,7 +183,6 @@ function handleError(message) {
   console.error(message);
   alert(`Hata: ${message}`);
 }
-
 
 function error() {
   tempElement.innerHTML = "Konum alınamadı.";
@@ -226,8 +217,6 @@ function setActive(element, date, time, temp, desc, icon, feels_like, humidity, 
       </div>
     `;
 
-
-    
     function formatTime(timeString) {
       return timeString.split(':').slice(0, 2).join(':'); 
     }
@@ -262,20 +251,15 @@ dayPart.forEach(day => {
   });
 });
 
-
-
 function load(url, vars) {
   const loader = document.getElementById('loader');
   const loaderPart = document.getElementById('loader-part');
  
- 
   loader.style.display = 'flex';
- 
  
   setTimeout(function() {
       var req = new XMLHttpRequest();
       req.open("POST", url, true);
- 
  
       req.onreadystatechange = function () {
           if (req.readyState == 4) {
@@ -284,16 +268,13 @@ function load(url, vars) {
               } else {
                   console.error('Error loading content:', req.status);
               }
-             
               loader.style.display = 'none';
           }
       };
- 
- 
+
       req.send(vars);
   }, 2800);
  }
- 
  
  fetch('https://jsonplaceholder.typicode.com/posts/1', null);
 
